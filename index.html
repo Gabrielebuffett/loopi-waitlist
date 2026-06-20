@@ -517,7 +517,7 @@
             margin: 0 auto;
         }
         .section-dark {
-            background: linear-gradient(135deg, #7E57A0, #9B6FC0, #C3ADE4, #CDB07E, #9C7E45);
+            background: linear-gradient(135deg, #3D2B50, #5A3D7A, #6B4589, #7A5C2E, #5C4520);
             background-size: 300% 300%;
             animation: sectionGradient 12s ease-in-out infinite;
             color: #fff;
@@ -600,39 +600,93 @@
             font-style: normal;
         }
 
-        /* Steps */
+        /* Steps — Full width, vertical, Apple keynote style */
         .steps {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
             text-align: left;
-            max-width: 700px;
+            max-width: 100%;
             margin: 0 auto;
         }
         .step {
-            background: #e8e8ee;
-            border-radius: 18px;
-            padding: 2rem;
-            box-shadow: 6px 6px 14px rgba(0,0,0,0.06), -6px -6px 14px rgba(255,255,255,0.9);
-            transition: transform 0.3s ease;
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            padding: 3.5rem 3rem;
+            background: transparent;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            box-shadow: none;
+            border-radius: 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.16,1,0.3,1);
         }
-        .step:hover { transform: translateY(-4px); }
+        .step::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0);
+            transition: background 0.6s ease;
+        }
+        .step:hover::before {
+            background: rgba(255,255,255,0.06);
+        }
+        .step:hover {
+            transform: none;
+        }
         .step-num {
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: #7E57A0;
-            letter-spacing: 2px;
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 900;
+            color: rgba(255,255,255,0.08);
+            letter-spacing: -2px;
+            line-height: 1;
+            transition: all 0.6s cubic-bezier(0.16,1,0.3,1);
+            position: relative;
+            z-index: 1;
+        }
+        .step:hover .step-num {
+            color: rgba(255,255,255,0.2);
+            transform: scale(1.1);
+        }
+        .step-content {
+            position: relative;
+            z-index: 1;
         }
         .step-title {
-            font-size: 1.1rem;
+            font-size: clamp(1.3rem, 2.5vw, 1.6rem);
             font-weight: 800;
-            color: #1a1a1a;
-            margin: 0.5rem 0;
+            color: #fff;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.5px;
+            transition: all 0.4s ease;
+        }
+        .step:hover .step-title {
+            transform: translateX(8px);
         }
         .step-desc {
-            font-size: 0.85rem;
-            color: #888;
-            line-height: 1.7;
+            font-size: clamp(0.85rem, 1.4vw, 0.95rem);
+            color: rgba(255,255,255,0.5);
+            line-height: 1.8;
+            max-width: 500px;
+            transition: all 0.4s ease;
+        }
+        .step:hover .step-desc {
+            color: rgba(255,255,255,0.7);
+            transform: translateX(8px);
+        }
+        .step-line {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 0;
+            background: linear-gradient(180deg, #C3ADE4, #CDB07E);
+            transition: height 0.6s cubic-bezier(0.16,1,0.3,1);
+        }
+        .step:hover .step-line {
+            height: 100%;
         }
 
         /* Features grid — Apple/Meta style */
@@ -873,7 +927,8 @@
 
         /* Section responsive */
         @media (max-width: 700px) {
-            .steps { grid-template-columns: 1fr; }
+            .step { grid-template-columns: 60px 1fr; gap: 1.5rem; padding: 2rem 1.5rem; }
+            .step-num { font-size: 2.5rem; }
             .features-grid { grid-template-columns: 1fr; }
             .specs-grid { grid-template-columns: 1fr; }
             .pricing { grid-template-columns: 1fr; max-width: 300px; }
@@ -1066,24 +1121,36 @@
 
                 <div class="steps">
                     <div class="step reveal reveal-delay-1">
+                        <div class="step-line"></div>
                         <span class="step-num">01</span>
-                        <h3 class="step-title">Wear them</h3>
-                        <p class="step-desc">Eyewear you'd choose for how it looks. Translucent acetate, light on the face, no sign of the technology inside.</p>
+                        <div class="step-content">
+                            <h3 class="step-title">Wear them</h3>
+                            <p class="step-desc">Eyewear you'd choose for how it looks. Translucent acetate, light on the face, no sign of the technology inside.</p>
+                        </div>
                     </div>
                     <div class="step reveal reveal-delay-2">
+                        <div class="step-line"></div>
                         <span class="step-num">02</span>
-                        <h3 class="step-title">Lisia guides</h3>
-                        <p class="step-desc">Gentle prompts arrive through bone-conduction audio — heard only by you. No screens, no buzzing, no notifications begging to be checked.</p>
+                        <div class="step-content">
+                            <h3 class="step-title">Lisia guides</h3>
+                            <p class="step-desc">Gentle prompts arrive through bone-conduction audio — heard only by you. No screens, no buzzing, no notifications begging to be checked.</p>
+                        </div>
                     </div>
                     <div class="step reveal reveal-delay-3">
+                        <div class="step-line"></div>
                         <span class="step-num">03</span>
-                        <h3 class="step-title">Consent Halo signals</h3>
-                        <p class="step-desc">A soft lilac light tells the people around you when guidance is active. Privacy you can see. Trust you don't have to explain.</p>
+                        <div class="step-content">
+                            <h3 class="step-title">Consent Halo signals</h3>
+                            <p class="step-desc">A soft lilac light tells the people around you when guidance is active. Privacy you can see. Trust you don't have to explain.</p>
+                        </div>
                     </div>
                     <div class="step reveal reveal-delay-4">
+                        <div class="step-line"></div>
                         <span class="step-num">04</span>
-                        <h3 class="step-title">Habits stick</h3>
-                        <p class="step-desc">Small, calm nudges instead of pressure. The kind of support you keep using because it never makes you feel watched.</p>
+                        <div class="step-content">
+                            <h3 class="step-title">Habits stick</h3>
+                            <p class="step-desc">Small, calm nudges instead of pressure. The kind of support you keep using because it never makes you feel watched.</p>
+                        </div>
                     </div>
                 </div>
 

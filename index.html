@@ -517,14 +517,24 @@
             margin: 0 auto;
         }
         .section-dark {
-            background: linear-gradient(135deg, #3D2B50, #5A3D7A, #6B4589, #7A5C2E, #5C4520);
-            background-size: 300% 300%;
-            animation: sectionGradient 12s ease-in-out infinite;
+            background: #2a2235;
             color: #fff;
+            position: relative;
+            overflow: hidden;
         }
-        @keyframes sectionGradient {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        .section-dark::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(126,87,160,0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 80%, rgba(205,176,126,0.1) 0%, transparent 50%);
+            animation: ambientGlow 10s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        @keyframes ambientGlow {
+            0% { transform: translate(0,0) scale(1); }
+            100% { transform: translate(-5%,3%) scale(1.1); }
         }
         .section-dark .section-title {
             color: #fff;
@@ -549,20 +559,6 @@
         .reveal-delay-2 { transition-delay: 0.25s; }
         .reveal-delay-3 { transition-delay: 0.4s; }
         .reveal-delay-4 { transition-delay: 0.55s; }
-        .section-dark .step-num { color: rgba(255,255,255,0.9); }
-        .section-dark .step {
-            background: rgba(255,255,255,0.12);
-            backdrop-filter: blur(20px);
-            box-shadow: none;
-            border: 1px solid rgba(255,255,255,0.15);
-        }
-        .section-dark .step-title { color: #fff; }
-        .section-dark .step-desc { color: rgba(255,255,255,0.6); }
-        .section-dark .step:hover {
-            background: rgba(255,255,255,0.2);
-            border-color: rgba(255,255,255,0.25);
-            transform: translateY(-4px);
-        }
         .eyebrow {
             font-size: 0.7rem;
             font-weight: 600;
@@ -600,7 +596,7 @@
             font-style: normal;
         }
 
-        /* Steps — Horizontal scroll cards, Apple style */
+        /* Steps — Neumorphic + Glossy horizontal cards */
         .steps {
             display: flex;
             gap: 1.2rem;
@@ -609,25 +605,37 @@
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
-            padding: 0.5rem 0 1.5rem;
+            padding: 1rem 0 1.5rem;
             scrollbar-width: none;
         }
         .steps::-webkit-scrollbar { display: none; }
         .step {
             flex: 0 0 200px;
             scroll-snap-align: start;
-            background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 1.8rem 1.5rem;
+            background: linear-gradient(145deg, #322842, #251d33);
+            border: none;
+            border-radius: 24px;
+            padding: 2rem 1.5rem;
             text-align: left;
             position: relative;
             overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+            transition: all 0.6s cubic-bezier(0.16,1,0.3,1);
             cursor: default;
+            box-shadow:
+                8px 8px 20px rgba(0,0,0,0.4),
+                -8px -8px 20px rgba(80,55,110,0.12),
+                inset 0 1px 0 rgba(255,255,255,0.06);
         }
         .step::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 100%);
+            border-radius: 24px 24px 0 0;
+            pointer-events: none;
+        }
+        .step::after {
             content: '';
             position: absolute;
             bottom: 0; left: 0;
@@ -637,45 +645,57 @@
             transform-origin: left;
             transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
         }
-        .step:hover::before { transform: scaleX(1); }
+        .step:hover::after { transform: scaleX(1); }
         .step:hover {
-            background: rgba(255,255,255,0.15);
-            border-color: rgba(255,255,255,0.2);
-            transform: translateY(-6px);
+            transform: translateY(-8px) scale(1.03);
+            box-shadow:
+                12px 12px 30px rgba(0,0,0,0.5),
+                -8px -8px 20px rgba(80,55,110,0.15),
+                inset 0 1px 0 rgba(255,255,255,0.1),
+                0 0 40px rgba(126,87,160,0.1);
         }
         .step-num {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 900;
-            color: rgba(255,255,255,0.08);
-            letter-spacing: -1px;
+            letter-spacing: -2px;
             line-height: 1;
-            transition: all 0.5s ease;
             margin-bottom: 1rem;
+            background: linear-gradient(135deg, rgba(195,173,228,0.15), rgba(205,176,126,0.1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
         }
         .step:hover .step-num {
-            color: rgba(255,255,255,0.2);
+            background: linear-gradient(135deg, rgba(195,173,228,0.4), rgba(205,176,126,0.3));
+            -webkit-background-clip: text;
+            background-clip: text;
+            transform: scale(1.05);
         }
-        .step-content {}
+        .step-content { position: relative; z-index: 1; }
         .step-line { display: none; }
         .step-title {
             font-size: 1rem;
             font-weight: 800;
-            color: #fff;
+            color: rgba(255,255,255,0.9);
             margin-bottom: 0.5rem;
             letter-spacing: -0.3px;
-            transition: color 0.4s ease;
+            transition: all 0.4s ease;
         }
         .step:hover .step-title {
             color: #C3ADE4;
+            text-shadow: 0 0 20px rgba(195,173,228,0.3);
         }
         .step-desc {
             font-size: 0.78rem;
-            color: rgba(255,255,255,0.45);
+            color: rgba(255,255,255,0.35);
             line-height: 1.7;
             transition: color 0.4s ease;
         }
         .step:hover .step-desc {
-            color: rgba(255,255,255,0.65);
+            color: rgba(255,255,255,0.6);
         }
 
         /* Features grid — Apple/Meta style */

@@ -506,6 +506,7 @@
             gap: 1px;
             pointer-events: none;
             z-index: 0;
+            opacity: 0.5;
         }
         .grid-cell {
             background: rgba(255,255,255,0.015);
@@ -1105,7 +1106,7 @@
             <div class="grid-bg" id="grid-bg"></div>
             <div class="section-inner" style="position:relative;z-index:1;">
                 <p class="eyebrow reveal">How it works</p>
-                <h2 class="section-title" id="hiw-title">A calm loop, worn all day</h2>
+                <h2 class="section-title reveal reveal-delay-1" id="hiw-title">A calm loop, worn all day</h2>
                 <p class="section-intro reveal reveal-delay-2">Loopi doesn't ask for your attention. It supports your habits quietly, then gets out of the way.</p>
 
                 <div class="steps" id="steps-timeline">
@@ -1419,29 +1420,6 @@
             }, 4000);
         });
 
-        // === SIDE SYMBOLS COLOR CHANGE ON DARK SECTIONS ===
-        var sideSymbols = document.querySelectorAll('.side-symbol');
-        var darkSections = document.querySelectorAll('.section-dark');
-
-        window.addEventListener('scroll', function() {
-            var scrollY = window.scrollY + window.innerHeight / 2;
-            var inDark = false;
-            darkSections.forEach(function(sec) {
-                var rect = sec.getBoundingClientRect();
-                var top = rect.top + window.scrollY;
-                var bottom = top + rect.height;
-                if (scrollY > top && scrollY < bottom) inDark = true;
-            });
-            sideSymbols.forEach(function(s) {
-                if (inDark) {
-                    s.style.filter = 'brightness(10)';
-                    s.style.opacity = '0.15';
-                } else {
-                    s.style.filter = 'none';
-                    s.style.opacity = '0.25';
-                }
-            });
-        });
 
         // === HOW IT WORKS GRID EFFECT ===
         var gridBg = document.getElementById('grid-bg');
@@ -1484,32 +1462,6 @@
             });
         });
 
-        // === HOW IT WORKS TITLE WORD REVEAL ===
-        (function() {
-            var hiwTitle = document.getElementById('hiw-title');
-            var words = hiwTitle.textContent.split(' ');
-            hiwTitle.textContent = '';
-            words.forEach(function(word, i) {
-                var span = document.createElement('span');
-                span.className = 'word-dark';
-                span.textContent = word;
-                span.style.animationDelay = (0.15 * i) + 's';
-                span.style.animationPlayState = 'paused';
-                hiwTitle.appendChild(span);
-                if (i < words.length - 1) hiwTitle.appendChild(document.createTextNode(' '));
-            });
-            var hiwObserver = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        hiwTitle.querySelectorAll('.word-dark').forEach(function(w) {
-                            w.style.animationPlayState = 'running';
-                        });
-                        hiwObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.3 });
-            hiwObserver.observe(hiwTitle);
-        })();
 
         // === STEP CARDS MOUSE GLOW ===
         document.querySelectorAll('.step[data-step]').forEach(function(step) {

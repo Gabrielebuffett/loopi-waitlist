@@ -713,100 +713,87 @@
             color: rgba(255,255,255,0.7);
         }
 
-        /* Features grid — Accordion cards */
+        /* Features grid — 3D Flip cards */
         .features-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 1rem;
+            gap: 1.2rem;
             max-width: 900px;
             margin: 0 auto;
+            perspective: 1200px;
         }
         .feature-card {
-            background: rgba(255,255,255,0.06);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px;
-            overflow: hidden;
+            position: relative;
+            height: 220px;
             cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
             opacity: 0;
             transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         .feature-card.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        .feature-card:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: rgba(255,255,255,0.15);
-            transform: translateY(-4px);
-            box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+        .feature-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+            transform-style: preserve-3d;
         }
-        .feature-card.open {
-            background: rgba(255,255,255,0.12);
-            border-color: rgba(195,173,228,0.25);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.25), 0 0 40px rgba(195,173,228,0.08);
-            transform: translateY(-6px) scale(1.02);
+        .feature-card:hover .feature-card-inner {
+            transform: rotateY(180deg);
         }
-        .feature-header {
+        .feature-front, .feature-back {
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            backface-visibility: hidden;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 1rem;
-            padding: 1.4rem 1.5rem;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+        .feature-front {
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .feature-back {
+            background: linear-gradient(160deg, rgba(195,173,228,0.15), rgba(205,176,126,0.1));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(195,173,228,0.2);
+            transform: rotateY(180deg);
         }
         .feature-icon {
-            width: 44px;
-            height: 44px;
-            min-width: 44px;
-            border-radius: 12px;
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
             background: rgba(255,255,255,0.08);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
-            color: #C3ADE4;
-        }
-        .feature-card.open .feature-icon {
-            background: linear-gradient(135deg, #C3ADE4, #CDB07E);
-            color: #fff;
-            box-shadow: 0 6px 20px rgba(195,173,228,0.35);
-            transform: scale(1.1);
+            margin-bottom: 1.2rem;
+            transition: all 0.5s ease;
+            border: 1px solid rgba(255,255,255,0.06);
         }
         .feature-name {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: rgba(255,255,255,0.85);
-            flex: 1;
-            transition: color 0.4s ease;
-        }
-        .feature-card.open .feature-name {
-            color: #ffffff;
-        }
-        .feature-plus {
-            font-size: 1.4rem;
-            font-weight: 300;
-            color: rgba(255,255,255,0.3);
-            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
-            line-height: 1;
-        }
-        .feature-card.open .feature-plus {
-            transform: rotate(45deg);
-            color: #C3ADE4;
-        }
-        .feature-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0.16,1,0.3,1), padding 0.5s cubic-bezier(0.16,1,0.3,1);
-            padding: 0 1.5rem;
-        }
-        .feature-card.open .feature-body {
-            max-height: 200px;
-            padding: 0 1.5rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 800;
+            color: rgba(255,255,255,0.9);
+            letter-spacing: -0.3px;
         }
         .feature-desc {
             font-size: 0.82rem;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.7);
             line-height: 1.75;
+        }
+        .feature-back .feature-name {
+            color: #fff;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 0 20px rgba(255,255,255,0.3);
         }
         .feature-card:nth-child(1) .feature-icon { color: #C3ADE4; }
         .feature-card:nth-child(2) .feature-icon { color: #B48ED2; }
@@ -1154,64 +1141,76 @@
             <p class="section-intro">Every feature exists to protect your attention — not to capture it.</p>
 
             <div class="features-grid">
-                <div class="feature-card" data-feature>
-                    <div class="feature-header">
-                        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
-                        <h3 class="feature-name">Consent Halo</h3>
-                        <span class="feature-plus">+</span>
-                    </div>
-                    <div class="feature-body">
-                        <p class="feature-desc">A soft lilac light, built into the frame and visible to others, not to you. It turns privacy into a promise people can see.</p>
-                    </div>
-                </div>
-                <div class="feature-card" data-feature>
-                    <div class="feature-header">
-                        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
-                        <h3 class="feature-name">Bone-conduction audio</h3>
-                        <span class="feature-plus">+</span>
-                    </div>
-                    <div class="feature-body">
-                        <p class="feature-desc">Sound travels through bone, straight to you. Bystanders hear nothing, your ears stay open to the world. No earbuds, no isolation.</p>
+                <div class="feature-card">
+                    <div class="feature-card-inner">
+                        <div class="feature-front">
+                            <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+                            <h3 class="feature-name">Consent Halo</h3>
+                        </div>
+                        <div class="feature-back">
+                            <h3 class="feature-name">Consent Halo</h3>
+                            <p class="feature-desc">A soft lilac light, built into the frame and visible to others, not to you. It turns privacy into a promise people can see.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="feature-card" data-feature>
-                    <div class="feature-header">
-                        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4m10-10h-4M6 12H2"/></svg></div>
-                        <h3 class="feature-name">A single button</h3>
-                        <span class="feature-plus">+</span>
-                    </div>
-                    <div class="feature-body">
-                        <p class="feature-desc">One discreet control on the temple to turn guidance on or off. Findable by touch, never triggered by accident.</p>
-                    </div>
-                </div>
-                <div class="feature-card" data-feature>
-                    <div class="feature-header">
-                        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                        <h3 class="feature-name">Lisia-direct</h3>
-                        <span class="feature-plus">+</span>
-                    </div>
-                    <div class="feature-body">
-                        <p class="feature-desc">The glasses connect straight to the Lisia app. Base keeps your phone nearby; Pro runs fully phone-free with on-device intelligence.</p>
+                <div class="feature-card">
+                    <div class="feature-card-inner">
+                        <div class="feature-front">
+                            <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+                            <h3 class="feature-name">Bone-conduction audio</h3>
+                        </div>
+                        <div class="feature-back">
+                            <h3 class="feature-name">Bone-conduction audio</h3>
+                            <p class="feature-desc">Sound travels through bone, straight to you. Bystanders hear nothing, your ears stay open to the world.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="feature-card" data-feature>
-                    <div class="feature-header">
-                        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg></div>
-                        <h3 class="feature-name">All-day battery</h3>
-                        <span class="feature-plus">+</span>
-                    </div>
-                    <div class="feature-body">
-                        <p class="feature-desc">A minimum of eight hours of active use. Enough to wear them like glasses, not like a gadget you have to babysit.</p>
+                <div class="feature-card">
+                    <div class="feature-card-inner">
+                        <div class="feature-front">
+                            <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4m10-10h-4M6 12H2"/></svg></div>
+                            <h3 class="feature-name">A single button</h3>
+                        </div>
+                        <div class="feature-back">
+                            <h3 class="feature-name">A single button</h3>
+                            <p class="feature-desc">One discreet control on the temple to turn guidance on or off. Findable by touch, never triggered by accident.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="feature-card" data-feature>
-                    <div class="feature-header">
-                        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0119 12.55"/><path d="M5 12.55a10.94 10.94 0 015.17-2.39"/></svg></div>
-                        <h3 class="feature-name">No camera</h3>
-                        <span class="feature-plus">+</span>
+                <div class="feature-card">
+                    <div class="feature-card-inner">
+                        <div class="feature-front">
+                            <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                            <h3 class="feature-name">Lisia-direct</h3>
+                        </div>
+                        <div class="feature-back">
+                            <h3 class="feature-name">Lisia-direct</h3>
+                            <p class="feature-desc">The glasses connect straight to the Lisia app. Base keeps your phone nearby; Pro runs fully phone-free with on-device intelligence.</p>
+                        </div>
                     </div>
-                    <div class="feature-body">
-                        <p class="feature-desc">By design, and without exception. There is no housing for a lens, in any version. What you see stays yours.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-inner">
+                        <div class="feature-front">
+                            <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg></div>
+                            <h3 class="feature-name">All-day battery</h3>
+                        </div>
+                        <div class="feature-back">
+                            <h3 class="feature-name">All-day battery</h3>
+                            <p class="feature-desc">A minimum of eight hours of active use. Enough to wear them like glasses, not like a gadget you have to babysit.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-inner">
+                        <div class="feature-front">
+                            <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0119 12.55"/><path d="M5 12.55a10.94 10.94 0 015.17-2.39"/></svg></div>
+                            <h3 class="feature-name">No camera</h3>
+                        </div>
+                        <div class="feature-back">
+                            <h3 class="feature-name">No camera</h3>
+                            <p class="feature-desc">By design, and without exception. There is no housing for a lens, in any version. What you see stays yours.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1528,17 +1527,6 @@
             });
         }, { threshold: 0.1 });
         revealEls.forEach(function(el) { revealObserver.observe(el); });
-
-        // === FEATURE CARDS ACCORDION + SCROLL REVEAL ===
-        document.querySelectorAll('[data-feature]').forEach(function(card) {
-            card.addEventListener('click', function() {
-                var wasOpen = card.classList.contains('open');
-                document.querySelectorAll('[data-feature]').forEach(function(c) {
-                    c.classList.remove('open');
-                });
-                if (!wasOpen) card.classList.add('open');
-            });
-        });
 
         // === FEATURE CARDS SCROLL REVEAL ===
         var featureCards = document.querySelectorAll('.feature-card');

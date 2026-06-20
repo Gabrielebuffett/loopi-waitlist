@@ -630,13 +630,8 @@
             btn.textContent = 'Sending...';
             btn.disabled = true;
 
-            var formData = new FormData();
-            formData.append('email', email);
-            fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: formData
-            });
+            var img = new Image();
+            img.src = GOOGLE_SCRIPT_URL + '?email=' + encodeURIComponent(email);
             emailInput.value = '';
             btn.textContent = 'Join Waitlist';
             btn.disabled = false;

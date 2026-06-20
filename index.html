@@ -162,7 +162,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             background-size: 200% 200%;
-            animation: gradientShift 4s ease-in-out infinite;
+            animation: wordReveal 0.8s cubic-bezier(0.16,1,0.3,1) forwards, gradientShift 4s ease-in-out 0.8s infinite;
         }
         @keyframes gradientShift {
             0%, 100% { background-position: 0% 50%; }

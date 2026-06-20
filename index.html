@@ -17,33 +17,6 @@
             overflow-x: hidden;
         }
 
-        /* Side decorative symbols */
-        .side-symbol {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 1200px;
-            height: auto;
-            opacity: 0.25;
-            z-index: 0;
-            pointer-events: none;
-            animation: symbolShift 8s ease-in-out infinite;
-        }
-        .side-symbol-left {
-            left: -550px;
-        }
-        .side-symbol-right {
-            right: -550px;
-            transform: translateY(-50%) scaleX(-1);
-        }
-        .side-symbol svg {
-            width: 100%;
-            height: auto;
-        }
-        @keyframes symbolShift {
-            0%, 100% { opacity: 0.25; transform: translateY(-50%) scale(1); }
-            50% { opacity: 0.18; transform: translateY(-52%) scale(1.02); }
-        }
 
         /* Ambient orbs */
         .ambient {
@@ -658,17 +631,18 @@
             backdrop-filter: blur(10px);
         }
         .step:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(195,173,228,0.2);
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3), 0 0 60px rgba(195,173,228,0.1);
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(195,173,228,0.3);
+            transform: translateY(-12px) scale(1.05);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 0 80px rgba(195,173,228,0.15), 0 0 0 1px rgba(195,173,228,0.15);
         }
         .step::before {
             content: '';
             position: absolute;
-            bottom: 0; left: 10%; right: 10%;
-            height: 2px;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
             background: linear-gradient(90deg, #C3ADE4, #CDB07E);
+            border-radius: 0 0 20px 20px;
             transform: scaleX(0);
             transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
         }
@@ -731,19 +705,19 @@
             margin: 0 auto;
         }
         .feature-card {
-            background: linear-gradient(160deg, #f0eef4 0%, #e4e2ea 40%, #dddbe3 100%);
+            background: linear-gradient(160deg, #2a1f3d 0%, #1e1630 40%, #181224 100%);
             padding: 2.2rem 1.8rem;
             position: relative;
             transition: all 0.6s cubic-bezier(0.16,1,0.3,1);
-            border: none;
+            border: 1px solid rgba(255,255,255,0.06);
             border-radius: 24px;
             opacity: 0;
             transform: translateY(40px);
             box-shadow:
-                8px 8px 20px rgba(0,0,0,0.08),
-                -6px -6px 16px rgba(255,255,255,0.9),
-                inset 0 2px 0 rgba(255,255,255,0.7),
-                inset 0 -1px 0 rgba(0,0,0,0.03);
+                8px 8px 20px rgba(0,0,0,0.4),
+                -6px -6px 16px rgba(80,55,110,0.06),
+                inset 0 2px 0 rgba(255,255,255,0.05),
+                inset 0 -1px 0 rgba(0,0,0,0.2);
             overflow: hidden;
         }
         .feature-card.visible {
@@ -756,7 +730,7 @@
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 50%;
-            background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.1) 40%, transparent 100%);
+            background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 40%, transparent 100%);
             border-radius: 24px 24px 0 0;
             pointer-events: none;
             z-index: 0;
@@ -776,28 +750,29 @@
         .feature-card:hover::after { opacity: 1; }
         .feature-card:hover {
             transform: translateY(-8px) scale(1.03);
+            background: linear-gradient(160deg, #352a4e, #271e3a 40%, #1e1630 100%);
+            border-color: rgba(195,173,228,0.15);
             box-shadow:
-                12px 12px 30px rgba(0,0,0,0.1),
-                -8px -8px 20px rgba(255,255,255,0.95),
-                inset 0 2px 0 rgba(255,255,255,0.8),
-                inset 0 -1px 0 rgba(0,0,0,0.04),
-                0 0 40px rgba(126,87,160,0.06);
+                12px 12px 30px rgba(0,0,0,0.5),
+                -8px -8px 20px rgba(80,55,110,0.08),
+                inset 0 2px 0 rgba(255,255,255,0.08),
+                0 0 50px rgba(195,173,228,0.08);
             z-index: 2;
         }
         .feature-card:hover .feature-icon {
             transform: scale(1.15) translateY(-2px);
-            background: linear-gradient(135deg, #7E57A0, #9B6FC0);
+            background: linear-gradient(135deg, #C3ADE4, #CDB07E);
             color: #fff;
-            box-shadow: 0 8px 20px rgba(126,87,160,0.25);
+            box-shadow: 0 8px 25px rgba(195,173,228,0.3);
         }
         .feature-card:hover .feature-name {
-            color: #7E57A0;
+            color: #C3ADE4;
         }
         .feature-icon {
             width: 48px;
             height: 48px;
             border-radius: 14px;
-            background: linear-gradient(145deg, #e8e6ee, #d8d6de);
+            background: rgba(255,255,255,0.06);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -806,15 +781,12 @@
             transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
             position: relative;
             z-index: 1;
-            box-shadow:
-                4px 4px 10px rgba(0,0,0,0.06),
-                -4px -4px 10px rgba(255,255,255,0.8),
-                inset 0 1px 0 rgba(255,255,255,0.5);
+            border: 1px solid rgba(255,255,255,0.06);
         }
         .feature-name {
             font-size: 1rem;
             font-weight: 800;
-            color: #1a1a1a;
+            color: rgba(255,255,255,0.9);
             margin-bottom: 0.3rem;
             letter-spacing: -0.3px;
             transition: color 0.4s ease;
@@ -834,7 +806,7 @@
         }
         .feature-desc {
             font-size: 0.82rem;
-            color: #999;
+            color: rgba(255,255,255,0.35);
             line-height: 1.75;
             position: relative;
             z-index: 1;
@@ -1001,18 +973,12 @@
 
         /* Responsive — iPad */
         @media (max-width: 1024px) {
-            .side-symbol { width: 800px; }
-            .side-symbol-left { left: -350px; }
-            .side-symbol-right { right: -350px; }
             .carousel-item { width: 400px; margin-left: -200px; }
             .carousel-item img { max-width: 380px; }
         }
 
         /* Responsive — iPad Mini / small tablets */
         @media (max-width: 768px) {
-            .side-symbol { opacity: 0.1; width: 600px; }
-            .side-symbol-left { left: -280px; }
-            .side-symbol-right { right: -280px; }
             .carousel-3d { height: 350px; }
             .carousel-item { width: 350px; margin-left: -175px; margin-top: -150px; }
             .carousel-item img { max-width: 330px; }
@@ -1023,7 +989,6 @@
         /* Responsive — iPhone */
         @media (max-width: 480px) {
             .page { padding: 1.2rem 1rem 1rem; }
-            .side-symbol { display: none; }
             .heading { font-size: 1.8rem; letter-spacing: -1px; }
             .badge { padding: 6px 14px; font-size: 11px; margin-bottom: 0.5rem; }
             .carousel-3d { height: 280px; }
@@ -1055,40 +1020,6 @@
     </style>
 </head>
 <body>
-    <div class="side-symbol side-symbol-left">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 130" width="200" height="130">
-            <defs>
-                <linearGradient id="gl" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
-                    <stop offset="0%" stop-color="#C3ADE4"><animate attributeName="stop-color" values="#C3ADE4;#CDB07E;#9C7E45;#7E57A0;#C3ADE4" dur="6s" repeatCount="indefinite"/></stop>
-                    <stop offset="50%" stop-color="#CDB07E"><animate attributeName="stop-color" values="#CDB07E;#9C7E45;#C3ADE4;#CDB07E;#CDB07E" dur="6s" repeatCount="indefinite"/></stop>
-                    <stop offset="100%" stop-color="#9C7E45"><animate attributeName="stop-color" values="#9C7E45;#7E57A0;#CDB07E;#C3ADE4;#9C7E45" dur="6s" repeatCount="indefinite"/></stop>
-                </linearGradient>
-            </defs>
-            <!-- Favicon sbiadito statico -->
-            <path d="M 80 50 C 80 26, 56 14, 36 14 C 16 14, 6 30, 6 50 C 6 70, 16 86, 36 86 C 56 86, 80 74, 80 50 C 80 26, 104 14, 124 14 C 144 14, 154 30, 154 50 C 154 70, 144 86, 124 86 C 104 86, 80 74, 80 50 Z" transform="translate(20,15)" fill="none" stroke="#ccc" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
-            <!-- Animazione colore non sbiadita che scorre sopra -->
-            <path d="M 80 50 C 80 26, 56 14, 36 14 C 16 14, 6 30, 6 50 C 6 70, 16 86, 36 86 C 56 86, 80 74, 80 50 C 80 26, 104 14, 124 14 C 144 14, 154 30, 154 50 C 154 70, 144 86, 124 86 C 104 86, 80 74, 80 50 Z" transform="translate(20,15)" fill="none" stroke="url(#gl)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="600" stroke-dashoffset="600">
-                <animate attributeName="stroke-dashoffset" values="600;0;0;-600" dur="6s" repeatCount="indefinite"/>
-            </path>
-        </svg>
-    </div>
-    <div class="side-symbol side-symbol-right">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 130" width="200" height="130">
-            <defs>
-                <linearGradient id="gr" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
-                    <stop offset="0%" stop-color="#9C7E45"><animate attributeName="stop-color" values="#9C7E45;#C3ADE4;#CDB07E;#7E57A0;#9C7E45" dur="6s" repeatCount="indefinite"/></stop>
-                    <stop offset="50%" stop-color="#7E57A0"><animate attributeName="stop-color" values="#7E57A0;#CDB07E;#9C7E45;#C3ADE4;#7E57A0" dur="6s" repeatCount="indefinite"/></stop>
-                    <stop offset="100%" stop-color="#C3ADE4"><animate attributeName="stop-color" values="#C3ADE4;#9C7E45;#7E57A0;#CDB07E;#C3ADE4" dur="6s" repeatCount="indefinite"/></stop>
-                </linearGradient>
-            </defs>
-            <!-- Favicon sbiadito statico -->
-            <path d="M 80 50 C 80 26, 56 14, 36 14 C 16 14, 6 30, 6 50 C 6 70, 16 86, 36 86 C 56 86, 80 74, 80 50 C 80 26, 104 14, 124 14 C 144 14, 154 30, 154 50 C 154 70, 144 86, 124 86 C 104 86, 80 74, 80 50 Z" transform="translate(20,15)" fill="none" stroke="#ccc" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
-            <!-- Animazione colore non sbiadita che scorre sopra -->
-            <path d="M 80 50 C 80 26, 56 14, 36 14 C 16 14, 6 30, 6 50 C 6 70, 16 86, 36 86 C 56 86, 80 74, 80 50 C 80 26, 104 14, 124 14 C 144 14, 154 30, 154 50 C 154 70, 144 86, 124 86 C 104 86, 80 74, 80 50 Z" transform="translate(20,15)" fill="none" stroke="url(#gr)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="600" stroke-dashoffset="600">
-                <animate attributeName="stroke-dashoffset" values="600;0;0;-600" dur="6s" repeatCount="indefinite"/>
-            </path>
-        </svg>
-    </div>
     <div class="ambient">
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
@@ -1217,7 +1148,7 @@
         </section>
 
         <!-- 5. Features -->
-        <section class="section" id="features">
+        <section class="section section-dark" id="features">
             <p class="eyebrow">Features</p>
             <h2 class="section-title">Six decisions, one philosophy</h2>
             <p class="section-intro">Every feature exists to protect your attention — not to capture it.</p>

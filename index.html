@@ -1182,20 +1182,28 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(160deg, #1a1a20, #22222a, #1e1e24);
+            background: linear-gradient(135deg, #7E57A0, #9B6FC0, #C3ADE4, #CDB07E, #9C7E45);
+            background-size: 400% 400%;
+            animation: manifestoBg 12s ease-in-out infinite;
             position: relative;
             overflow: hidden;
             z-index: 3;
             width: 100vw;
             margin-left: calc(-50vw + 50%);
         }
+        @keyframes manifestoBg {
+            0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 50% 0%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 100%; }
+        }
         .manifesto-section::before {
             content: '';
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(ellipse at 30% 50%, rgba(126,87,160,0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 50%, rgba(205,176,126,0.06) 0%, transparent 50%);
+                radial-gradient(ellipse at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(255,255,255,0.06) 0%, transparent 50%);
             pointer-events: none;
         }
         .manifesto-inner {
@@ -1242,7 +1250,7 @@
             width: 0;
             max-width: 500px;
             height: auto;
-            filter: drop-shadow(0 0 60px rgba(195,173,228,0.4)) invert(1) brightness(2);
+            filter: drop-shadow(0 0 60px rgba(255,255,255,0.6));
             transition: all 1s cubic-bezier(0.16,1,0.3,1);
         }
         .manifesto-explode.active .explode-glasses {

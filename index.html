@@ -1072,12 +1072,13 @@
                 inset 0 1px 0 rgba(255,255,255,0.6);
         }
         .why-us {
-            background: linear-gradient(160deg, #ece8f4, #e4dff0);
-            border: 1px solid rgba(126,87,160,0.08);
+            background: linear-gradient(160deg, #f0ecf8, #e8e2f2);
+            border: 2px solid rgba(126,87,160,0.15);
             box-shadow:
                 6px 6px 16px rgba(0,0,0,0.06),
                 -4px -4px 12px rgba(255,255,255,0.8),
-                inset 0 1px 0 rgba(255,255,255,0.7);
+                inset 0 1px 0 rgba(255,255,255,0.7),
+                0 0 30px rgba(126,87,160,0.05);
         }
         .why-card:hover {
             transform: translateY(-4px);
@@ -1089,12 +1090,13 @@
                 inset 0 1px 0 rgba(255,255,255,0.7);
         }
         .why-us:hover {
-            border-color: rgba(126,87,160,0.15);
+            border-color: rgba(126,87,160,0.25);
+            transform: translateY(-6px) scale(1.02);
             box-shadow:
-                8px 8px 22px rgba(0,0,0,0.08),
+                10px 10px 30px rgba(0,0,0,0.1),
                 -6px -6px 14px rgba(255,255,255,0.9),
                 inset 0 1px 0 rgba(255,255,255,0.8),
-                0 0 30px rgba(126,87,160,0.05);
+                0 0 50px rgba(126,87,160,0.1);
         }
         .why-logo {
             width: 80px;
@@ -1162,33 +1164,64 @@
             50% { background-position: 100% 50%; }
         }
 
-        /* About */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 1.5rem;
-            text-align: left;
-            max-width: 700px;
-            margin: 0 auto;
+        /* Manifesto section */
+        .manifesto-section {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0a0a0a;
+            position: relative;
+            overflow: hidden;
+            z-index: 3;
         }
-        .about-card {
-            background: #e8e8ee;
-            border-radius: 18px;
-            padding: 2rem;
-            box-shadow: 6px 6px 14px rgba(0,0,0,0.06), -6px -6px 14px rgba(255,255,255,0.9);
+        .manifesto-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 30% 50%, rgba(126,87,160,0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 50%, rgba(205,176,126,0.06) 0%, transparent 50%);
+            pointer-events: none;
         }
-        .about-label {
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #7E57A0;
-            margin-bottom: 0.6rem;
+        .manifesto-inner {
+            text-align: center;
+            position: relative;
+            z-index: 1;
         }
-        .about-desc {
-            font-size: 0.85rem;
-            color: #888;
-            line-height: 1.7;
+        .manifesto-line {
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 1.05;
+            margin: 0;
+            opacity: 0;
+            transform: translateY(60px) scale(0.9);
+            filter: blur(10px);
+            transition: all 1.2s cubic-bezier(0.16,1,0.3,1);
+        }
+        .manifesto-line.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+        .manifesto-line-1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: #fff;
+            text-shadow: 0 0 60px rgba(255,255,255,0.15);
+        }
+        .manifesto-line-2 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            background: linear-gradient(90deg, #C3ADE4, #CDB07E, #C3ADE4);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: manifestoGrad 6s ease-in-out infinite;
+            transition-delay: 0.3s;
+        }
+        @keyframes manifestoGrad {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         /* Section responsive */
@@ -1203,7 +1236,6 @@
             .features-grid { grid-template-columns: 1fr; }
             .specs-grid { grid-template-columns: 1fr; }
             .pricing { grid-template-columns: 1fr; max-width: 300px; }
-            .about-grid { grid-template-columns: 1fr; }
             .why-grid { grid-template-columns: 1fr; max-width: 400px; }
             .section { padding: 3rem 1.5rem; }
         }
@@ -1499,28 +1531,12 @@
             <p class="section-closing">Not a smarter way to record your life. A calmer way to live it.</p>
         </section>
 
-        <!-- 8. About -->
-        <section class="section" id="about">
-            <p class="eyebrow">About</p>
-            <h2 class="section-title">Calm technology, made wearable</h2>
-            <p class="section-intro">Loopi is the wearable layer of Lisia — a system built on a simple belief: the best technology asks for nothing.</p>
-
-            <div class="about-grid">
-                <div class="about-card">
-                    <h3 class="about-label">What we believe</h3>
-                    <p class="about-desc">Wellbeing apps were meant to help, then started to monitor. Notifications became guilt. Tracking became pressure. We think a tool for your wellbeing should leave you alone — and still be there when you need it.</p>
-                </div>
-                <div class="about-card">
-                    <h3 class="about-label">What Loopi is</h3>
-                    <p class="about-desc">Smart glasses that guide quietly and protect your privacy visibly. No camera, no feed, no fight for your attention. Designed in the language of eyewear, not electronics.</p>
-                </div>
-                <div class="about-card">
-                    <h3 class="about-label">Where it comes from</h3>
-                    <p class="about-desc">Built within the Lisia ecosystem and shaped by people who felt watched by their own wellness apps. Recognised by Harvard Innovation Labs, VML Future 100 and Forbes.</p>
-                </div>
+        <!-- 8. Manifesto -->
+        <section class="manifesto-section" id="manifesto">
+            <div class="manifesto-inner">
+                <p class="manifesto-line manifesto-line-1" id="manifesto-1">Wear the loop.</p>
+                <p class="manifesto-line manifesto-line-2" id="manifesto-2">Make habit reality.</p>
             </div>
-
-            <p class="section-closing manifesto">Wear the loop. Make habit reality.</p>
         </section>
 
         <!-- Footer -->
@@ -1756,6 +1772,22 @@
             });
         }, { threshold: 0.3 });
         timelineObserver.observe(stepsTimeline);
+
+        // === MANIFESTO SCROLL REVEAL ===
+        var manifestoLines = document.querySelectorAll('.manifesto-line');
+        var manifestoObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    manifestoLines.forEach(function(line, i) {
+                        setTimeout(function() {
+                            line.classList.add('visible');
+                        }, i * 400);
+                    });
+                    manifestoObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        manifestoObserver.observe(document.getElementById('manifesto'));
 
         // === SCROLL REVEAL FOR ALL SECTIONS ===
         var revealEls = document.querySelectorAll('.reveal');

@@ -169,11 +169,20 @@
             50% { background-position: 100% 50%; }
         }
         .subheading {
-            font-size: clamp(0.9rem, 1.8vw, 1rem);
+            font-size: clamp(0.95rem, 1.8vw, 1.05rem);
             color: #999;
             font-weight: 400;
             line-height: 1.7;
             margin-bottom: 1rem;
+        }
+        .subheading .char {
+            display: inline-block;
+            opacity: 0;
+            animation: charReveal 0.4s cubic-bezier(0.16,1,0.3,1) forwards;
+        }
+        @keyframes charReveal {
+            from { opacity: 0; transform: translateY(10px); filter: blur(4px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
 
         /* Form */
@@ -292,13 +301,15 @@
             max-width: 320px;
             height: auto;
             filter: drop-shadow(0 20px 40px rgba(0,0,0,0.08));
-            transition: all 0.7s cubic-bezier(0.16,1,0.3,1);
+            transition: all 0.9s cubic-bezier(0.16,1,0.3,1);
             pointer-events: none;
+            transform: scale(0.9);
         }
 
         .carousel-item.active img {
             filter: drop-shadow(0 30px 60px rgba(0,0,0,0.15));
-            transform: scale(1.02);
+            transform: scale(1.12);
+            transition: all 0.9s cubic-bezier(0.16,1,0.3,1);
         }
 
         /* Reflection */
@@ -473,7 +484,7 @@
                 <span class="word" style="animation-delay:0.52s">experience</span>
                 <span class="word highlight" style="animation-delay:0.62s">Loopi</span>
             </h1>
-            <p class="subheading">Smart glasses that blend cutting-edge AI with iconic style.</p>
+            <p class="subheading" id="subheading">Smart glasses that blend cutting-edge AI with iconic style.</p>
         </div>
 
         <!-- 2. 3D Carousel — center stage -->
@@ -553,6 +564,21 @@
     </div>
 
     <script>
+        // === SUBHEADING CHAR ANIMATION ===
+        (function() {
+            var el = document.getElementById('subheading');
+            var text = el.textContent;
+            el.textContent = '';
+            var baseDelay = 0.8;
+            for (var i = 0; i < text.length; i++) {
+                var span = document.createElement('span');
+                span.className = 'char';
+                span.textContent = text[i] === ' ' ? '\u00A0' : text[i];
+                span.style.animationDelay = (baseDelay + i * 0.02) + 's';
+                el.appendChild(span);
+            }
+        })();
+
         // === 3D CAROUSEL ===
         const items = document.querySelectorAll('.carousel-item');
         const swatches = document.querySelectorAll('.swatch');

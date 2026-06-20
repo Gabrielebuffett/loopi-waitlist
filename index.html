@@ -157,8 +157,16 @@
             to { opacity: 1; transform: translateY(0) rotateX(0); filter: blur(0); }
         }
         .loopi-text {
-            color: #7E57A0;
-            -webkit-text-fill-color: #7E57A0;
+            background: linear-gradient(135deg, #C3ADE4, #9C7E45, #CDB07E, #7E57A0, #C3ADE4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 300% 300%;
+            animation: wordReveal 0.8s cubic-bezier(0.16,1,0.3,1) forwards, logoGradient 5s ease-in-out 1s infinite;
+        }
+        @keyframes logoGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
         .subheading {
             font-size: clamp(0.95rem, 1.8vw, 1.05rem);

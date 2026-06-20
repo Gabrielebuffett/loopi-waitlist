@@ -524,21 +524,30 @@
             z-index: 3;
             padding: 5rem 2rem;
         }
-        .section-dark::before {
-            content: '';
+        .grid-bg {
             position: absolute;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(126,87,160,0.15) 0%, rgba(205,176,126,0.08) 40%, transparent 70%);
+            inset: 0;
+            display: grid;
+            grid-template-columns: repeat(16, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            gap: 1px;
             pointer-events: none;
-            transform: translate(var(--mx, 50%), var(--my, 50%)) translate(-50%, -50%);
-            transition: transform 0.15s ease-out, opacity 0.3s ease;
-            opacity: 0;
             z-index: 0;
         }
-        .section-dark:hover::before {
-            opacity: 1;
+        .grid-cell {
+            background: rgba(255,255,255,0.02);
+            border-radius: 4px;
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+        }
+        .grid-cell.lit {
+            background: rgba(195,173,228,0.08);
+            transform: scale(0.92);
+            box-shadow: 0 0 15px rgba(195,173,228,0.1);
+        }
+        .grid-cell.lit-close {
+            background: rgba(195,173,228,0.15);
+            transform: scale(0.85) translateY(-3px);
+            box-shadow: 0 4px 20px rgba(195,173,228,0.15), inset 0 1px 0 rgba(255,255,255,0.08);
         }
         .section-dark .section-title {
             color: #fff;
@@ -1138,7 +1147,8 @@
 
         <!-- 4. How it works -->
         <section class="section section-dark" id="how-it-works">
-            <div class="section-inner">
+            <div class="grid-bg" id="grid-bg"></div>
+            <div class="section-inner" style="position:relative;z-index:1;">
                 <p class="eyebrow reveal">How it works</p>
                 <h2 class="section-title" id="hiw-title">A calm loop, worn all day</h2>
                 <p class="section-intro reveal reveal-delay-2">Loopi doesn't ask for your attention. It supports your habits quietly, then gets out of the way.</p>
@@ -1478,12 +1488,45 @@
             });
         });
 
-        // === HOW IT WORKS MOUSE SPOTLIGHT ===
+        // === HOW IT WORKS GRID EFFECT ===
+        var gridBg = document.getElementById('grid-bg');
+        var cols = 16, rows = 8;
+        var cells = [];
+        for (var i = 0; i < cols * rows; i++) {
+            var cell = document.createElement('div');
+            cell.className = 'grid-cell';
+            gridBg.appendChild(cell);
+            cells.push(cell);
+        }
+
         var hiwSection = document.getElementById('how-it-works');
         hiwSection.addEventListener('mousemove', function(e) {
             var rect = hiwSection.getBoundingClientRect();
-            hiwSection.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
-            hiwSection.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+            var mx = e.clientX - rect.left;
+            var my = e.clientY - rect.top;
+            var cellW = rect.width / cols;
+            var cellH = rect.height / rows;
+
+            cells.forEach(function(cell, i) {
+                var col = i % cols;
+                var row = Math.floor(i / cols);
+                var cx = (col + 0.5) * cellW;
+                var cy = (row + 0.5) * cellH;
+                var dist = Math.sqrt((mx - cx) * (mx - cx) + (my - cy) * (my - cy));
+
+                cell.classList.remove('lit', 'lit-close');
+                if (dist < 120) {
+                    cell.classList.add('lit-close');
+                } else if (dist < 250) {
+                    cell.classList.add('lit');
+                }
+            });
+        });
+
+        hiwSection.addEventListener('mouseleave', function() {
+            cells.forEach(function(cell) {
+                cell.classList.remove('lit', 'lit-close');
+            });
         });
 
         // === HOW IT WORKS TITLE WORD REVEAL ===

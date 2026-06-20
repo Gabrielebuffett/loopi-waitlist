@@ -1721,6 +1721,23 @@
             </div>
         </section>
 
+        <!-- 9. Final Waitlist CTA -->
+        <section class="section" id="final-cta" style="padding: 5rem 2rem;">
+            <p class="eyebrow">Don't miss out</p>
+            <h2 class="section-title">Join the waitlist</h2>
+            <p class="section-intro">Be first in line when we launch.</p>
+
+            <div class="form-wrapper" style="max-width: 420px; margin: 0 auto;">
+                <form id="waitlist-form-bottom">
+                    <div class="input-group">
+                        <input type="email" placeholder="Enter your email" required id="email-input-bottom">
+                        <button type="submit" class="btn-join">Join Waitlist</button>
+                    </div>
+                    <p class="success-msg" id="success-msg-bottom">You're on the list. We'll be in touch soon.</p>
+                </form>
+            </div>
+        </section>
+
         <p class="footer-text">Loopi Inc.</p>
     </div>
 
@@ -1864,6 +1881,20 @@
             document.getElementById('success-msg').classList.add('show');
             setTimeout(() => {
                 document.getElementById('success-msg').classList.remove('show');
+            }, 4000);
+        });
+
+        // === BOTTOM FORM → Google Sheets ===
+        document.getElementById('waitlist-form-bottom').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var emailInput = document.getElementById('email-input-bottom');
+            var email = emailInput.value;
+            var img = new Image();
+            img.src = GOOGLE_SCRIPT_URL + '?email=' + encodeURIComponent(email);
+            emailInput.value = '';
+            document.getElementById('success-msg-bottom').classList.add('show');
+            setTimeout(function() {
+                document.getElementById('success-msg-bottom').classList.remove('show');
             }, 4000);
         });
 

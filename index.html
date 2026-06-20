@@ -1258,13 +1258,27 @@
         }
         .explode-glasses {
             width: 0;
-            max-width: 500px;
+            max-width: 400px;
             height: auto;
-            filter: drop-shadow(0 0 60px rgba(255,255,255,0.6));
+            filter: drop-shadow(0 0 60px rgba(255,255,255,0.6)) invert(1) brightness(2);
             transition: all 1s cubic-bezier(0.16,1,0.3,1);
         }
         .manifesto-explode.active .explode-glasses {
-            width: 50vw;
+            width: clamp(200px, 35vw, 380px);
+        }
+
+        .explode-tagline {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            font-style: italic;
+            color: rgba(255,255,255,0.6);
+            margin-top: 0.8rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.8s cubic-bezier(0.16,1,0.3,1) 0.6s;
+        }
+        .manifesto-explode.active .explode-tagline {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Typewriter */
@@ -1614,7 +1628,10 @@
                 <p class="typewriter-line" id="typewriter"></p>
             </div>
             <div class="manifesto-explode" id="manifesto-explode">
-                <img src="logo.svg" alt="Loopi" class="explode-glasses" id="explode-glasses">
+                <div style="text-align:center;">
+                    <img src="logo.svg" alt="Loopi" class="explode-glasses" id="explode-glasses">
+                    <p class="explode-tagline">Make habit reality.</p>
+                </div>
             </div>
         </section>
 

@@ -504,6 +504,19 @@
             background-clip: text;
             animation: titleColorShift 10s ease-in-out infinite;
         }
+        .keyword-pop {
+            display: inline-block;
+            background: linear-gradient(135deg, #C3ADE4, #CDB07E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.15em;
+            animation: popPulse 3s ease-in-out infinite;
+        }
+        @keyframes popPulse {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
+            50% { transform: scale(1.08); filter: drop-shadow(0 0 20px rgba(195,173,228,0.4)); }
+        }
         .section-gradient .section-intro { color: rgba(255,255,255,0.4); }
         .section-gradient .section-closing { color: rgba(255,255,255,0.25); }
 
@@ -1265,7 +1278,7 @@
         <!-- 5. Features -->
         <section class="section section-gradient" id="features">
             <p class="eyebrow">Features</p>
-            <h2 class="section-title">Six decisions, one philosophy</h2>
+            <h2 class="section-title"><span class="keyword-pop">Six</span> decisions, <span class="keyword-pop">one</span> philosophy</h2>
             <p class="section-intro">Every feature exists to protect your attention — not to capture it.</p>
 
             <div class="features-grid">

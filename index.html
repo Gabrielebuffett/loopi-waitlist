@@ -606,13 +606,16 @@
         // === LOOPI GRADIENT AFTER REVEAL ===
         setTimeout(function() {
             var loopi = document.querySelector('.loopi-text');
+            loopi.style.opacity = '1';
+            loopi.style.transform = 'none';
+            loopi.style.filter = 'none';
             loopi.style.background = 'linear-gradient(135deg, #C3ADE4, #9C7E45, #CDB07E, #7E57A0, #C3ADE4)';
             loopi.style.webkitBackgroundClip = 'text';
             loopi.style.webkitTextFillColor = 'transparent';
             loopi.style.backgroundClip = 'text';
             loopi.style.backgroundSize = '300% 300%';
             loopi.style.animation = 'logoGrad 5s ease-in-out infinite';
-        }, 1500);
+        }, 2500);
 
         // === SUBHEADING CHAR ANIMATION ===
         (function() {

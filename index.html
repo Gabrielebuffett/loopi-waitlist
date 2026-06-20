@@ -483,15 +483,58 @@
             padding-bottom: 1.5rem;
         }
 
-        /* Responsive */
-        @media (max-width: 700px) {
-            .page { padding: 2rem 1.5rem 1.5rem; }
-            .carousel-3d { height: 280px; }
-            .carousel-item { width: 260px; margin-left: -130px; }
-            .carousel-item img { max-width: 240px; }
+        /* Responsive — iPad */
+        @media (max-width: 1024px) {
+            .side-symbol { width: 800px; }
+            .side-symbol-left { left: -350px; }
+            .side-symbol-right { right: -350px; }
+            .carousel-item { width: 400px; margin-left: -200px; }
+            .carousel-item img { max-width: 380px; }
+        }
+
+        /* Responsive — iPad Mini / small tablets */
+        @media (max-width: 768px) {
+            .side-symbol { opacity: 0.1; width: 600px; }
+            .side-symbol-left { left: -280px; }
+            .side-symbol-right { right: -280px; }
+            .carousel-3d { height: 350px; }
+            .carousel-item { width: 350px; margin-left: -175px; margin-top: -150px; }
+            .carousel-item img { max-width: 330px; }
+            .heading { font-size: clamp(1.8rem, 5vw, 2.5rem); }
             .carousel-nav { display: none; }
+        }
+
+        /* Responsive — iPhone */
+        @media (max-width: 480px) {
+            .page { padding: 1.2rem 1rem 1rem; }
+            .side-symbol { display: none; }
+            .heading { font-size: 1.8rem; letter-spacing: -1px; }
+            .badge { padding: 6px 14px; font-size: 11px; margin-bottom: 0.5rem; }
+            .carousel-3d { height: 280px; }
+            .carousel-item { width: 280px; margin-left: -140px; margin-top: -120px; }
+            .carousel-item img { max-width: 260px; }
+            .carousel-item.active img { transform: scale(1.05); }
+            .carousel-label { margin-top: -80px; }
+            .color-name { font-size: 0.95rem; }
+            .color-desc { font-size: 0.7rem; }
+            .swatches { gap: 10px; }
+            .swatch { width: 24px; height: 24px; }
             .input-group { flex-direction: column; }
             .btn-join { width: 100%; margin-top: 4px; }
+            .form-wrapper { max-width: 100%; }
+            .logo { width: 120px; }
+            .socials { gap: 8px; }
+            .social-link { width: 36px; height: 36px; }
+            .divider { margin: 1rem auto; }
+        }
+
+        /* Responsive — iPhone SE / small */
+        @media (max-width: 375px) {
+            .heading { font-size: 1.5rem; }
+            .carousel-3d { height: 240px; }
+            .carousel-item { width: 240px; margin-left: -120px; margin-top: -100px; }
+            .carousel-item img { max-width: 220px; }
+            .carousel-label { margin-top: -60px; }
         }
     </style>
 </head>

@@ -1223,43 +1223,46 @@
             color: #fff;
             text-shadow: 0 0 60px rgba(255,255,255,0.15);
         }
-        /* Full screen flash */
-        .manifesto-flash {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            pointer-events: none;
-            opacity: 0;
+        /* Marquee lines */
+        .marquee-layer {
+            position: relative;
+            z-index: 0;
+            overflow: hidden;
         }
-        .manifesto-flash span {
-            font-size: clamp(4rem, 12vw, 10rem);
-            font-weight: 900;
-            letter-spacing: -4px;
-            background: linear-gradient(90deg, #C3ADE4, #CDB07E, #C3ADE4);
-            background-size: 300% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: flashGrad 3s ease-in-out infinite;
-            text-align: center;
-            line-height: 1;
+        .marquee-track {
+            white-space: nowrap;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 2.2;
+            color: rgba(255,255,255,0.06);
         }
-        @keyframes flashGrad {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        .marquee-track span {
+            display: inline-block;
+            min-width: 100%;
         }
-        .manifesto-flash.flash-active {
-            animation: flashPulse 3s ease-in-out infinite;
+        .marquee-left {
+            animation: scrollLeft 25s linear infinite;
         }
-        @keyframes flashPulse {
-            0% { opacity: 0; transform: scale(0.8); }
-            15% { opacity: 1; transform: scale(1.05); }
-            35% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0; transform: scale(1.1); }
-            100% { opacity: 0; transform: scale(0.8); }
+        .marquee-right {
+            animation: scrollRight 20s linear infinite;
+        }
+        @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes scrollRight {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+        .marquee-top {
+            mask-image: linear-gradient(180deg, transparent, rgba(0,0,0,0.6) 30%, rgba(0,0,0,1) 100%);
+            -webkit-mask-image: linear-gradient(180deg, transparent, rgba(0,0,0,0.6) 30%, rgba(0,0,0,1) 100%);
+        }
+        .marquee-bottom {
+            mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 70%, transparent);
+            -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 70%, transparent);
         }
 
         /* Section responsive */
@@ -1581,11 +1584,18 @@
 
         <!-- 8. Manifesto -->
         <section class="manifesto-section" id="manifesto">
+            <div class="marquee-layer marquee-top">
+                <div class="marquee-track marquee-left"><span>make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp;</span></div>
+                <div class="marquee-track marquee-right"><span>make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp;</span></div>
+                <div class="marquee-track marquee-left"><span>make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp;</span></div>
+            </div>
             <div class="manifesto-inner">
                 <p class="manifesto-line manifesto-line-1">Wear the loop.</p>
             </div>
-            <div class="manifesto-flash" id="manifesto-flash">
-                <span>MAKE HABIT REALITY</span>
+            <div class="marquee-layer marquee-bottom">
+                <div class="marquee-track marquee-right"><span>make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp;</span></div>
+                <div class="marquee-track marquee-left"><span>make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp;</span></div>
+                <div class="marquee-track marquee-right"><span>make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp; make habit reality. &nbsp;</span></div>
             </div>
         </section>
 
@@ -1823,16 +1833,12 @@
         }, { threshold: 0.3 });
         timelineObserver.observe(stepsTimeline);
 
-        // === MANIFESTO SCROLL REVEAL + FLASH ===
+        // === MANIFESTO SCROLL REVEAL ===
         var manifestoLine = document.querySelector('.manifesto-line-1');
-        var manifestoFlash = document.getElementById('manifesto-flash');
         var manifestoObserver = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
                     manifestoLine.classList.add('visible');
-                    setTimeout(function() {
-                        manifestoFlash.classList.add('flash-active');
-                    }, 1200);
                     manifestoObserver.unobserve(entry.target);
                 }
             });

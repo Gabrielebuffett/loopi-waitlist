@@ -197,9 +197,20 @@
         .loopi-text {
             color: #7E57A0;
         }
+        .loopi-text.gradient-active {
+            background: linear-gradient(90deg, #C3ADE4, #7E57A0, #CDB07E, #9C7E45, #C3ADE4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 400% 100%;
+            animation: logoGrad 6s linear infinite;
+            opacity: 1 !important;
+            transform: none !important;
+            filter: none !important;
+        }
         @keyframes logoGrad {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            0% { background-position: 0% 50%; }
+            100% { background-position: 400% 50%; }
         }
         .subheading {
             font-size: clamp(0.95rem, 1.8vw, 1.05rem);
@@ -605,16 +616,7 @@
     <script>
         // === LOOPI GRADIENT AFTER REVEAL ===
         setTimeout(function() {
-            var loopi = document.querySelector('.loopi-text');
-            loopi.style.opacity = '1';
-            loopi.style.transform = 'none';
-            loopi.style.filter = 'none';
-            loopi.style.background = 'linear-gradient(135deg, #C3ADE4, #9C7E45, #CDB07E, #7E57A0, #C3ADE4)';
-            loopi.style.webkitBackgroundClip = 'text';
-            loopi.style.webkitTextFillColor = 'transparent';
-            loopi.style.backgroundClip = 'text';
-            loopi.style.backgroundSize = '300% 300%';
-            loopi.style.animation = 'logoGrad 5s ease-in-out infinite';
+            document.querySelector('.loopi-text').classList.add('gradient-active');
         }, 2500);
 
         // === SUBHEADING CHAR ANIMATION ===

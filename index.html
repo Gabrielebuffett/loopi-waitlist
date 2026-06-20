@@ -197,6 +197,10 @@
         .loopi-text {
             color: #7E57A0;
         }
+        @keyframes logoGrad {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
         .subheading {
             font-size: clamp(0.95rem, 1.8vw, 1.05rem);
             color: #999;
@@ -599,6 +603,17 @@
     </div>
 
     <script>
+        // === LOOPI GRADIENT AFTER REVEAL ===
+        setTimeout(function() {
+            var loopi = document.querySelector('.loopi-text');
+            loopi.style.background = 'linear-gradient(135deg, #C3ADE4, #9C7E45, #CDB07E, #7E57A0, #C3ADE4)';
+            loopi.style.webkitBackgroundClip = 'text';
+            loopi.style.webkitTextFillColor = 'transparent';
+            loopi.style.backgroundClip = 'text';
+            loopi.style.backgroundSize = '300% 300%';
+            loopi.style.animation = 'logoGrad 5s ease-in-out infinite';
+        }, 1500);
+
         // === SUBHEADING CHAR ANIMATION ===
         (function() {
             var el = document.getElementById('subheading');

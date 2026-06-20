@@ -659,10 +659,43 @@
             margin: 0 0.4rem;
             transition: all 0.6s cubic-bezier(0.16,1,0.3,1);
         }
+        .step::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            background: radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), rgba(255,255,255,0.2) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        .step:hover::after { opacity: 1; }
         .step:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-6px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15), 0 0 30px rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.22);
+            transform: translateY(-10px) scale(1.04);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.2),
+                        0 0 50px rgba(195,173,228,0.15),
+                        0 0 0 1px rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.35);
+        }
+        .step:hover .step-num {
+            color: rgba(255,255,255,0.25);
+            transform: scale(1.15) translateY(-4px);
+            text-shadow: 0 0 30px rgba(195,173,228,0.3);
+        }
+        .step:hover .step-title {
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255,255,255,0.4);
+            transform: translateY(-2px);
+        }
+        .step:hover .step-desc {
+            color: rgba(255,255,255,0.7);
+        }
+        .step:hover .step-dot {
+            background: #CDB07E;
+            border-color: #CDB07E;
+            box-shadow: 0 0 25px rgba(205,176,126,0.6), 0 0 50px rgba(205,176,126,0.2);
+            transform: scale(1.5);
         }
         .step-dot {
             width: 16px;
@@ -1532,6 +1565,15 @@
                     s.style.filter = 'none';
                     s.style.opacity = '0.25';
                 }
+            });
+        });
+
+        // === STEP CARDS MOUSE GLOW ===
+        document.querySelectorAll('.step[data-step]').forEach(function(step) {
+            step.addEventListener('mousemove', function(e) {
+                var rect = step.getBoundingClientRect();
+                step.style.setProperty('--sx', ((e.clientX - rect.left) / rect.width * 100) + '%');
+                step.style.setProperty('--sy', ((e.clientY - rect.top) / rect.height * 100) + '%');
             });
         });
 

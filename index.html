@@ -1250,6 +1250,13 @@
             width: auto;
             height: auto;
             object-fit: cover;
+            pointer-events: none;
+        }
+        .fullscreen-video::-webkit-media-controls {
+            display: none !important;
+        }
+        .fullscreen-video::-webkit-media-controls-enclosure {
+            display: none !important;
         }
 
         /* Manifesto section */

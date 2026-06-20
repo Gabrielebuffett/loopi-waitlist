@@ -1937,16 +1937,16 @@
                     typeCount++;
                     if (typeCount >= 2) {
                         setTimeout(function() {
-                            manifestoLine.style.transition = 'all 0.8s cubic-bezier(0.16,1,0.3,1)';
-                            manifestoLine.style.opacity = '0';
-                            manifestoLine.style.transform = 'scale(1.5)';
-                            manifestoLine.style.filter = 'blur(10px)';
+                            manifestoContent.style.transition = 'all 0.8s cubic-bezier(0.16,1,0.3,1)';
+                            manifestoContent.style.opacity = '0';
+                            manifestoContent.style.transform = 'scale(0.9)';
+                            manifestoContent.style.filter = 'blur(8px)';
                             explodeEl.classList.add('active');
                             setTimeout(function() {
                                 explodeEl.classList.remove('active');
-                                manifestoLine.style.opacity = '1';
-                                manifestoLine.style.transform = 'scale(1)';
-                                manifestoLine.style.filter = 'blur(0)';
+                                manifestoContent.style.opacity = '1';
+                                manifestoContent.style.transform = 'scale(1)';
+                                manifestoContent.style.filter = 'blur(0)';
                                 typeCount = 0;
                                 setTimeout(function() {
                                     eraseWriter();

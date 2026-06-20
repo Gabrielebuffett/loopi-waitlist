@@ -613,28 +613,6 @@
             justify-content: center;
             position: relative;
         }
-        .steps::before {
-            content: '';
-            position: absolute;
-            top: 32px;
-            left: 10%;
-            width: 80%;
-            height: 2px;
-            background: rgba(255,255,255,0.1);
-        }
-        .steps::after {
-            content: '';
-            position: absolute;
-            top: 32px;
-            left: 10%;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #C3ADE4, #CDB07E);
-            transition: width 1.5s cubic-bezier(0.16,1,0.3,1);
-        }
-        .steps.animate::after {
-            width: 80%;
-        }
         .step {
             flex: 1;
             text-align: center;

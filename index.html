@@ -1152,21 +1152,15 @@
         .why-col-boom {
             font-weight: 900 !important;
             font-size: 1rem;
-            background: linear-gradient(90deg, #C3ADE4, #CDB07E, #C3ADE4);
-            background-size: 300% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: boomGrad 3s ease-in-out infinite;
-        }
-        @keyframes boomGrad {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            color: #CDB07E !important;
+            -webkit-text-fill-color: #CDB07E;
+            text-shadow: 0 0 20px rgba(205,176,126,0.4);
         }
         .why-row:hover .why-col-boom {
-            font-size: 1.3rem !important;
-            letter-spacing: 2px;
-            filter: drop-shadow(0 0 20px rgba(195,173,228,0.5));
+            font-size: 1.1rem !important;
+            color: #fff !important;
+            -webkit-text-fill-color: #fff;
+            text-shadow: 0 0 30px rgba(255,255,255,0.5);
         }
         /* Exploding intro text */
         .why-explode {

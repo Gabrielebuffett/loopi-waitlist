@@ -507,10 +507,33 @@
 
         /* === SECTIONS === */
         .section {
-            max-width: 800px;
+            max-width: 100%;
             width: 100%;
             padding: 5rem 2rem;
             text-align: center;
+        }
+        .section-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .section-dark {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .section-dark .section-title { color: #fff; }
+        .section-dark .section-intro { color: rgba(255,255,255,0.5); }
+        .section-dark .section-closing { color: rgba(255,255,255,0.3); }
+        .section-dark .eyebrow { color: #C3ADE4; }
+        .section-dark .step {
+            background: #242424;
+            box-shadow: none;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .section-dark .step-title { color: #fff; }
+        .section-dark .step-desc { color: rgba(255,255,255,0.45); }
+        .section-dark .step:hover {
+            background: #2a2a2a;
+            border-color: rgba(126,87,160,0.2);
         }
         .eyebrow {
             font-size: 0.7rem;
@@ -1007,35 +1030,37 @@
         </div>
 
         <!-- 4. How it works -->
-        <section class="section" id="how-it-works">
-            <p class="eyebrow">How it works</p>
-            <h2 class="section-title">A calm loop, worn all day</h2>
-            <p class="section-intro">Loopi doesn't ask for your attention. It supports your habits quietly, then gets out of the way.</p>
+        <section class="section section-dark" id="how-it-works">
+            <div class="section-inner">
+                <p class="eyebrow">How it works</p>
+                <h2 class="section-title">A calm loop, worn all day</h2>
+                <p class="section-intro">Loopi doesn't ask for your attention. It supports your habits quietly, then gets out of the way.</p>
 
-            <div class="steps">
-                <div class="step">
-                    <span class="step-num">01</span>
-                    <h3 class="step-title">Wear them</h3>
-                    <p class="step-desc">Eyewear you'd choose for how it looks. Translucent acetate, light on the face, no sign of the technology inside.</p>
+                <div class="steps">
+                    <div class="step">
+                        <span class="step-num">01</span>
+                        <h3 class="step-title">Wear them</h3>
+                        <p class="step-desc">Eyewear you'd choose for how it looks. Translucent acetate, light on the face, no sign of the technology inside.</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">02</span>
+                        <h3 class="step-title">Lisia guides</h3>
+                        <p class="step-desc">Gentle prompts arrive through bone-conduction audio — heard only by you. No screens, no buzzing, no notifications begging to be checked.</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">03</span>
+                        <h3 class="step-title">Consent Halo signals</h3>
+                        <p class="step-desc">A soft lilac light tells the people around you when guidance is active. Privacy you can see. Trust you don't have to explain.</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">04</span>
+                        <h3 class="step-title">Habits stick</h3>
+                        <p class="step-desc">Small, calm nudges instead of pressure. The kind of support you keep using because it never makes you feel watched.</p>
+                    </div>
                 </div>
-                <div class="step">
-                    <span class="step-num">02</span>
-                    <h3 class="step-title">Lisia guides</h3>
-                    <p class="step-desc">Gentle prompts arrive through bone-conduction audio — heard only by you. No screens, no buzzing, no notifications begging to be checked.</p>
-                </div>
-                <div class="step">
-                    <span class="step-num">03</span>
-                    <h3 class="step-title">Consent Halo signals</h3>
-                    <p class="step-desc">A soft lilac light tells the people around you when guidance is active. Privacy you can see. Trust you don't have to explain.</p>
-                </div>
-                <div class="step">
-                    <span class="step-num">04</span>
-                    <h3 class="step-title">Habits stick</h3>
-                    <p class="step-desc">Small, calm nudges instead of pressure. The kind of support you keep using because it never makes you feel watched.</p>
-                </div>
+
+                <p class="section-closing">No camera. No feed. No fatigue. Just presence, given back.</p>
             </div>
-
-            <p class="section-closing">No camera. No feed. No fatigue. Just presence, given back.</p>
         </section>
 
         <!-- 5. Features -->

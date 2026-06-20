@@ -527,11 +527,18 @@
         .section-dark::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background:
-                radial-gradient(ellipse at 20% 50%, rgba(126,87,160,0.12) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 50%, rgba(205,176,126,0.08) 0%, transparent 50%);
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(126,87,160,0.15) 0%, rgba(205,176,126,0.08) 40%, transparent 70%);
             pointer-events: none;
+            transform: translate(var(--mx, 50%), var(--my, 50%)) translate(-50%, -50%);
+            transition: transform 0.15s ease-out, opacity 0.3s ease;
+            opacity: 0;
+            z-index: 0;
+        }
+        .section-dark:hover::before {
+            opacity: 1;
         }
         .section-dark .section-title {
             color: #fff;
@@ -1469,6 +1476,14 @@
                     s.style.opacity = '0.25';
                 }
             });
+        });
+
+        // === HOW IT WORKS MOUSE SPOTLIGHT ===
+        var hiwSection = document.getElementById('how-it-works');
+        hiwSection.addEventListener('mousemove', function(e) {
+            var rect = hiwSection.getBoundingClientRect();
+            hiwSection.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+            hiwSection.style.setProperty('--my', (e.clientY - rect.top) + 'px');
         });
 
         // === HOW IT WORKS TITLE WORD REVEAL ===

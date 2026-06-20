@@ -505,6 +505,274 @@
             padding-bottom: 1.5rem;
         }
 
+        /* === SECTIONS === */
+        .section {
+            max-width: 800px;
+            width: 100%;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        .eyebrow {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #7E57A0;
+            margin-bottom: 1rem;
+        }
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            line-height: 1.15;
+        }
+        .section-intro {
+            font-size: clamp(0.9rem, 1.6vw, 1rem);
+            color: #999;
+            line-height: 1.8;
+            max-width: 520px;
+            margin: 0 auto 3rem;
+        }
+        .section-closing {
+            font-size: 0.95rem;
+            color: #bbb;
+            font-style: italic;
+            margin-top: 3rem;
+            line-height: 1.7;
+        }
+        .manifesto {
+            font-size: 1.2rem;
+            color: #7E57A0;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        /* Steps */
+        .steps {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            text-align: left;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .step {
+            background: #e8e8ee;
+            border-radius: 18px;
+            padding: 2rem;
+            box-shadow: 6px 6px 14px rgba(0,0,0,0.06), -6px -6px 14px rgba(255,255,255,0.9);
+            transition: transform 0.3s ease;
+        }
+        .step:hover { transform: translateY(-4px); }
+        .step-num {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #7E57A0;
+            letter-spacing: 2px;
+        }
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin: 0.5rem 0;
+        }
+        .step-desc {
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.7;
+        }
+
+        /* Features grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            text-align: left;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .feature-card {
+            background: #e8e8ee;
+            border-radius: 18px;
+            padding: 2rem;
+            box-shadow: 6px 6px 14px rgba(0,0,0,0.06), -6px -6px 14px rgba(255,255,255,0.9);
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover { transform: translateY(-4px); }
+        .feature-name {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 0.3rem;
+        }
+        .feature-tag {
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #7E57A0;
+            background: rgba(126,87,160,0.08);
+            padding: 3px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+        }
+        .feature-desc {
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.7;
+        }
+
+        /* Specs */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            text-align: left;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+        }
+        .spec-card {
+            background: #e8e8ee;
+            border-radius: 18px;
+            padding: 2rem;
+            box-shadow: 6px 6px 14px rgba(0,0,0,0.06), -6px -6px 14px rgba(255,255,255,0.9);
+        }
+        .spec-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #7E57A0;
+            margin-bottom: 0.6rem;
+        }
+        .spec-desc {
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.7;
+        }
+
+        /* Pricing */
+        .pricing {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .price-card {
+            background: #e8e8ee;
+            border-radius: 18px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 6px 6px 14px rgba(0,0,0,0.06), -6px -6px 14px rgba(255,255,255,0.9);
+            transition: transform 0.3s ease;
+        }
+        .price-card:hover { transform: translateY(-4px); }
+        .price-card:first-child {
+            border: 2px solid rgba(126,87,160,0.2);
+        }
+        .price-name {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 0.4rem;
+        }
+        .price-amount {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #7E57A0;
+            margin-bottom: 0.6rem;
+        }
+        .price-desc {
+            font-size: 0.8rem;
+            color: #999;
+            line-height: 1.6;
+        }
+
+        /* Compare table */
+        .compare-table {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .compare-header, .compare-row {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr;
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+        .compare-header {
+            border-bottom: 2px solid #ddd;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #999;
+        }
+        .compare-row {
+            border-bottom: 1px solid #eee;
+        }
+        .compare-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        .compare-them {
+            font-size: 0.8rem;
+            color: #bbb;
+        }
+        .compare-us {
+            font-size: 0.8rem;
+            color: #7E57A0;
+            font-weight: 500;
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+            text-align: left;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .about-card {
+            background: #e8e8ee;
+            border-radius: 18px;
+            padding: 2rem;
+            box-shadow: 6px 6px 14px rgba(0,0,0,0.06), -6px -6px 14px rgba(255,255,255,0.9);
+        }
+        .about-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #7E57A0;
+            margin-bottom: 0.6rem;
+        }
+        .about-desc {
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.7;
+        }
+
+        /* Section responsive */
+        @media (max-width: 700px) {
+            .steps, .features-grid, .specs-grid { grid-template-columns: 1fr; }
+            .pricing { grid-template-columns: 1fr; max-width: 300px; }
+            .about-grid { grid-template-columns: 1fr; }
+            .compare-header, .compare-row { grid-template-columns: 1fr; gap: 0.3rem; }
+            .compare-header { display: none; }
+            .compare-row { padding: 1rem 0; }
+            .compare-them, .compare-us { font-size: 0.8rem; }
+            .compare-them::before { content: "Others: "; font-weight: 600; color: #999; }
+            .compare-us::before { content: "Loopi: "; font-weight: 600; }
+            .section { padding: 3rem 1.5rem; }
+        }
+
         /* Responsive — iPad */
         @media (max-width: 1024px) {
             .side-symbol { width: 800px; }
@@ -675,10 +943,181 @@
             </div>
         </div>
 
-        <!-- 4. Logo + Social — footer -->
-        <div class="divider"></div>
+        <!-- 4. How it works -->
+        <section class="section" id="how-it-works">
+            <p class="eyebrow">How it works</p>
+            <h2 class="section-title">A calm loop, worn all day</h2>
+            <p class="section-intro">Loopi doesn't ask for your attention. It supports your habits quietly, then gets out of the way.</p>
 
-        <img src="logo.svg" alt="Loopi" class="logo" style="margin-bottom: 0.4rem; margin-top: 6rem;">
+            <div class="steps">
+                <div class="step">
+                    <span class="step-num">01</span>
+                    <h3 class="step-title">Wear them</h3>
+                    <p class="step-desc">Eyewear you'd choose for how it looks. Translucent acetate, light on the face, no sign of the technology inside.</p>
+                </div>
+                <div class="step">
+                    <span class="step-num">02</span>
+                    <h3 class="step-title">Lisia guides</h3>
+                    <p class="step-desc">Gentle prompts arrive through bone-conduction audio — heard only by you. No screens, no buzzing, no notifications begging to be checked.</p>
+                </div>
+                <div class="step">
+                    <span class="step-num">03</span>
+                    <h3 class="step-title">Consent Halo signals</h3>
+                    <p class="step-desc">A soft lilac light tells the people around you when guidance is active. Privacy you can see. Trust you don't have to explain.</p>
+                </div>
+                <div class="step">
+                    <span class="step-num">04</span>
+                    <h3 class="step-title">Habits stick</h3>
+                    <p class="step-desc">Small, calm nudges instead of pressure. The kind of support you keep using because it never makes you feel watched.</p>
+                </div>
+            </div>
+
+            <p class="section-closing">No camera. No feed. No fatigue. Just presence, given back.</p>
+        </section>
+
+        <!-- 5. Features -->
+        <section class="section" id="features">
+            <p class="eyebrow">Features</p>
+            <h2 class="section-title">Six decisions, one philosophy</h2>
+            <p class="section-intro">Every feature exists to protect your attention — not to capture it.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3 class="feature-name">Consent Halo</h3>
+                    <span class="feature-tag">Signature</span>
+                    <p class="feature-desc">A soft lilac light, built into the frame and visible to others, not to you. It turns privacy into a promise people can see — the opposite of a hidden camera.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-name">Bone-conduction audio</h3>
+                    <p class="feature-desc">Sound travels through bone, straight to you. Bystanders hear nothing, your ears stay open to the world. No earbuds, no isolation.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-name">A single button</h3>
+                    <p class="feature-desc">One discreet control on the temple to turn guidance on or off. Findable by touch, never triggered by accident.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-name">Lisia-direct</h3>
+                    <p class="feature-desc">The glasses connect straight to the Lisia app. Base keeps your phone nearby; Pro runs fully phone-free with on-device intelligence.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-name">All-day battery</h3>
+                    <p class="feature-desc">A minimum of eight hours of active use — enough to wear them like glasses, not like a gadget you have to babysit.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-name">No camera</h3>
+                    <p class="feature-desc">By design, and without exception. There is no housing for a lens, in any version. What you see stays yours.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. The glasses -->
+        <section class="section" id="the-glasses">
+            <p class="eyebrow">Loopi No.5</p>
+            <h2 class="section-title">Crystal Lilac — light, not armour</h2>
+            <p class="section-intro">Designed like atelier eyewear, engineered like calm technology.</p>
+
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <h3 class="spec-label">Material</h3>
+                    <p class="spec-desc">Translucent acetate with a crystal finish and a pearl-grey wash. Champagne hardware. The ∞ mark, discreet on the hinge.</p>
+                </div>
+                <div class="spec-card">
+                    <h3 class="spec-label">Feel</h3>
+                    <p class="spec-desc">Under 35 grams, balanced so nothing weighs on the nose. Made in Europe. Interchangeable lenses — prescription or sun.</p>
+                </div>
+            </div>
+
+            <div class="pricing">
+                <div class="price-card">
+                    <h3 class="price-name">Loopi No.5</h3>
+                    <p class="price-amount">€690</p>
+                    <p class="price-desc">The full experience: bone-conduction, Consent Halo, Lisia-direct.</p>
+                </div>
+                <div class="price-card">
+                    <h3 class="price-name">Loopi Pro</h3>
+                    <p class="price-amount">Coming soon</p>
+                    <p class="price-desc">Adds on-device edge-AI for a fully phone-free day.</p>
+                </div>
+                <div class="price-card">
+                    <h3 class="price-name">Frame Essentials</h3>
+                    <p class="price-amount">€390</p>
+                    <p class="price-desc">The frame alone, for your own optical lenses.</p>
+                </div>
+            </div>
+
+            <p class="section-closing">Technology you wear because of how it looks — and keep because of how it feels.</p>
+        </section>
+
+        <!-- 7. Why Loopi -->
+        <section class="section" id="why-loopi">
+            <p class="eyebrow">Why Loopi</p>
+            <h2 class="section-title">Same form factor. Opposite intent.</h2>
+            <p class="section-intro">Smart glasses arrived promising to capture the world. Loopi was built to give it back.</p>
+
+            <div class="compare-table">
+                <div class="compare-header">
+                    <div class="compare-col"></div>
+                    <div class="compare-col compare-them">Conventional</div>
+                    <div class="compare-col compare-us">Loopi</div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-col compare-label">Relationship</div>
+                    <div class="compare-col compare-them">Captures attention, data, images</div>
+                    <div class="compare-col compare-us">Gives back presence and calm</div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-col compare-label">Social signal</div>
+                    <div class="compare-col compare-them">Ambiguous surveillance</div>
+                    <div class="compare-col compare-us">Consent Halo — visible transparency</div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-col compare-label">Aesthetic</div>
+                    <div class="compare-col compare-them">Gadget, armour, ostentatious tech</div>
+                    <div class="compare-col compare-us">Atelier eyewear — light, not armour</div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-col compare-label">Audio</div>
+                    <div class="compare-col compare-them">Speakers others can hear</div>
+                    <div class="compare-col compare-us">Bone-conduction — only you hear</div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-col compare-label">Camera</div>
+                    <div class="compare-col compare-them">Front-facing, always implied</div>
+                    <div class="compare-col compare-us">None. By design.</div>
+                </div>
+            </div>
+
+            <p class="section-closing">Not a smarter way to record your life. A calmer way to live it.</p>
+        </section>
+
+        <!-- 8. About -->
+        <section class="section" id="about">
+            <p class="eyebrow">About</p>
+            <h2 class="section-title">Calm technology, made wearable</h2>
+            <p class="section-intro">Loopi is the wearable layer of Lisia — a system built on a simple belief: the best technology asks for nothing.</p>
+
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3 class="about-label">What we believe</h3>
+                    <p class="about-desc">Wellbeing apps were meant to help, then started to monitor. Notifications became guilt. Tracking became pressure. We think a tool for your wellbeing should leave you alone — and still be there when you need it.</p>
+                </div>
+                <div class="about-card">
+                    <h3 class="about-label">What Loopi is</h3>
+                    <p class="about-desc">Smart glasses that guide quietly and protect your privacy visibly. No camera, no feed, no fight for your attention. Designed in the language of eyewear, not electronics.</p>
+                </div>
+                <div class="about-card">
+                    <h3 class="about-label">Where it comes from</h3>
+                    <p class="about-desc">Built within the Lisia ecosystem and shaped by people who felt watched by their own wellness apps. Recognised by Harvard Innovation Labs, VML Future 100 and Forbes.</p>
+                </div>
+            </div>
+
+            <p class="section-closing manifesto">Wear the loop. Make habit reality.</p>
+        </section>
+
+        <!-- Footer -->
+        <div class="divider" style="margin-top: 4rem;"></div>
+
+        <img src="logo.svg" alt="Loopi" class="logo" style="margin-bottom: 0.4rem; margin-top: 2rem;">
         <p class="tagline" style="margin-bottom: 1.5rem;">Make habit reality.</p>
 
         <div class="socials">

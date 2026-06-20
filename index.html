@@ -517,7 +517,7 @@
             margin: 0 auto;
         }
         .section-dark {
-            background: linear-gradient(135deg, #9B6FC0, #C3ADE4, #CDB07E, #9C7E45, #B48ED2);
+            background: linear-gradient(135deg, #C3ADE4, #B48ED2, #CDB07E, #9C7E45, #C3ADE4);
             background-size: 300% 300%;
             animation: sectionGradient 12s ease-in-out infinite;
             color: #fff;
@@ -650,15 +650,26 @@
         .step {
             flex: 1;
             text-align: center;
-            padding: 0.8rem;
+            padding: 1.5rem 1rem;
             position: relative;
             cursor: default;
-            background: rgba(255,255,255,0.12);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.2);
+            background: linear-gradient(145deg, #322842, #251d33);
+            border: none;
             border-radius: 24px;
             margin: 0 0.4rem;
             transition: all 0.6s cubic-bezier(0.16,1,0.3,1);
+            box-shadow:
+                8px 8px 20px rgba(0,0,0,0.4),
+                -8px -8px 20px rgba(80,55,110,0.12),
+                inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+        .step-gloss {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 100%);
+            border-radius: 24px 24px 0 0;
+            pointer-events: none;
         }
         .step::after {
             content: '';
@@ -672,12 +683,13 @@
         }
         .step:hover::after { opacity: 1; }
         .step:hover {
-            background: rgba(255,255,255,0.22);
+            background: linear-gradient(145deg, #3a2f4e, #2d2240);
             transform: translateY(-10px) scale(1.04);
-            box-shadow: 0 24px 60px rgba(0,0,0,0.2),
-                        0 0 50px rgba(195,173,228,0.15),
-                        0 0 0 1px rgba(255,255,255,0.3);
-            border-color: rgba(255,255,255,0.35);
+            box-shadow:
+                12px 12px 30px rgba(0,0,0,0.5),
+                -8px -8px 20px rgba(80,55,110,0.15),
+                inset 0 1px 0 rgba(255,255,255,0.1),
+                0 0 50px rgba(195,173,228,0.12);
         }
         .step:hover .step-num {
             color: rgba(255,255,255,0.25);

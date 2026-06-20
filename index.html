@@ -1223,6 +1223,32 @@
             color: #fff;
             text-shadow: 0 0 60px rgba(255,255,255,0.15);
         }
+        /* Explode glasses */
+        .manifesto-explode {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        .manifesto-explode.active {
+            opacity: 1;
+        }
+        .explode-glasses {
+            width: 0;
+            max-width: 700px;
+            height: auto;
+            filter: drop-shadow(0 30px 80px rgba(0,0,0,0.4));
+            transition: all 1s cubic-bezier(0.16,1,0.3,1);
+        }
+        .manifesto-explode.active .explode-glasses {
+            width: 70vw;
+        }
+
         /* Typewriter */
         .typewriter-line {
             font-size: clamp(1.5rem, 4vw, 2.5rem);
@@ -1564,9 +1590,12 @@
 
         <!-- 8. Manifesto -->
         <section class="manifesto-section" id="manifesto">
-            <div class="manifesto-inner">
+            <div class="manifesto-inner" id="manifesto-content">
                 <p class="manifesto-line manifesto-line-1">Wear the loop.</p>
                 <p class="typewriter-line" id="typewriter"></p>
+            </div>
+            <div class="manifesto-explode" id="manifesto-explode">
+                <img src="loopi-cognac.png" alt="Loopi" class="explode-glasses" id="explode-glasses">
             </div>
         </section>
 
@@ -1810,6 +1839,10 @@
         var typeText = 'Make habit reality.';
         var typeStarted = false;
 
+        var explodeEl = document.getElementById('manifesto-explode');
+        var manifestoContent = document.getElementById('manifesto-content');
+        var typeCount = 0;
+
         function typeWriter() {
             var i = 0;
             typewriterEl.textContent = '';
@@ -1819,9 +1852,30 @@
                     i++;
                     setTimeout(type, 80 + Math.random() * 60);
                 } else {
-                    setTimeout(function() {
-                        eraseWriter();
-                    }, 2000);
+                    typeCount++;
+                    if (typeCount >= 2) {
+                        setTimeout(function() {
+                            manifestoContent.style.transition = 'all 0.8s cubic-bezier(0.16,1,0.3,1)';
+                            manifestoContent.style.opacity = '0';
+                            manifestoContent.style.transform = 'scale(0.8)';
+                            manifestoContent.style.filter = 'blur(10px)';
+                            explodeEl.classList.add('active');
+                            setTimeout(function() {
+                                explodeEl.classList.remove('active');
+                                manifestoContent.style.opacity = '1';
+                                manifestoContent.style.transform = 'scale(1)';
+                                manifestoContent.style.filter = 'blur(0)';
+                                typeCount = 0;
+                                setTimeout(function() {
+                                    eraseWriter();
+                                }, 1000);
+                            }, 3000);
+                        }, 1500);
+                    } else {
+                        setTimeout(function() {
+                            eraseWriter();
+                        }, 2000);
+                    }
                 }
             }
             type();

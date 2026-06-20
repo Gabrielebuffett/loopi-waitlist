@@ -71,11 +71,18 @@
         .page {
             position: relative;
             z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .hero-screen {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 1.5rem 2rem 1.5rem;
+            justify-content: center;
+            padding: 1.5rem 2rem;
+            width: 100%;
         }
 
         /* Top section */
@@ -524,8 +531,13 @@
         .section {
             max-width: 100%;
             width: 100%;
+            min-height: 100vh;
             padding: 4rem 2rem;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         .section-inner {
             max-width: 800px;
@@ -537,7 +549,6 @@
             position: relative;
             overflow: hidden;
             z-index: 3;
-            padding: 5rem 2rem;
         }
         .grid-bg {
             position: absolute;
@@ -1211,7 +1222,7 @@
 
         /* Manifesto section */
         .manifesto-section {
-            min-height: 80vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1380,66 +1391,79 @@
         }
 
         /* Section responsive */
-        @media (max-width: 700px) {
-            .steps { grid-template-columns: repeat(2, 1fr); }
-            .step-num { font-size: 3rem; }
-            .step + .step::after { display: none; }
-            .step-num { font-size: 2rem; }
-            .features-grid { grid-template-columns: 1fr 1fr; }
-        }
-        @media (max-width: 480px) {
-            .features-grid { grid-template-columns: 1fr; }
-            .specs-grid { grid-template-columns: 1fr; }
-            .pricing { grid-template-columns: 1fr; max-width: 300px; }
-            .why-grid { grid-template-columns: 1fr; max-width: 400px; }
-            .section { padding: 3rem 1.5rem; }
-        }
-
         /* Responsive — iPad */
         @media (max-width: 1024px) {
+            .section { min-height: 100vh; padding: 3rem 2rem; }
             .carousel-item { width: 400px; margin-left: -200px; }
             .carousel-item img { max-width: 380px; }
+            .steps { grid-template-columns: repeat(2, 1fr); }
+            .features-grid { grid-template-columns: 1fr 1fr; }
+            .why-single-card { max-width: 100%; }
+            .why-row { grid-template-columns: 1fr 1fr 1fr; }
         }
 
-        /* Responsive — iPad Mini / small tablets */
+        /* Responsive — iPad Mini */
         @media (max-width: 768px) {
-            .carousel-3d { height: 350px; }
-            .carousel-item { width: 350px; margin-left: -175px; margin-top: -150px; }
-            .carousel-item img { max-width: 330px; }
+            .carousel-3d { height: 320px; }
+            .carousel-item { width: 320px; margin-left: -160px; margin-top: -140px; }
+            .carousel-item img { max-width: 300px; }
             .heading { font-size: clamp(1.8rem, 5vw, 2.5rem); }
             .carousel-nav { display: none; }
+            .steps { grid-template-columns: repeat(2, 1fr); }
+            .step-num { font-size: 2.5rem; }
+            .features-grid { grid-template-columns: 1fr 1fr; }
+            .feature-card { height: 200px; }
+            .manifesto-line-1 { font-size: clamp(2rem, 6vw, 3rem) !important; }
+            .section-title { font-size: clamp(1.8rem, 4vw, 2.5rem); }
         }
 
         /* Responsive — iPhone */
         @media (max-width: 480px) {
-            .page { padding: 1.2rem 1rem 1rem; }
+            .hero-screen { padding: 1rem; }
+            .section { min-height: 100vh; padding: 2.5rem 1.2rem; }
             .heading { font-size: 1.8rem; letter-spacing: -1px; }
             .badge { padding: 6px 14px; font-size: 11px; margin-bottom: 0.5rem; }
-            .carousel-3d { height: 280px; }
-            .carousel-item { width: 280px; margin-left: -140px; margin-top: -120px; }
-            .carousel-item img { max-width: 260px; }
+            .carousel-3d { height: 260px; }
+            .carousel-item { width: 260px; margin-left: -130px; margin-top: -110px; }
+            .carousel-item img { max-width: 240px; }
             .carousel-item.active img { transform: scale(1.05); }
-            .carousel-label { margin-top: -80px; }
-            .color-name { font-size: 0.95rem; }
+            .carousel-label { margin-top: -70px; }
+            .color-name { font-size: 0.9rem; }
             .color-desc { font-size: 0.7rem; }
-            .swatches { gap: 10px; }
-            .swatch { width: 24px; height: 24px; }
+            .swatches { gap: 8px; }
+            .swatch { width: 22px; height: 22px; }
             .input-group { flex-direction: column; }
             .btn-join { width: 100%; margin-top: 4px; }
-            .form-wrapper { max-width: 100%; }
-            .logo { width: 120px; }
-            .socials { gap: 8px; }
-            .social-link { width: 36px; height: 36px; }
-            .divider { margin: 1rem auto; }
+            .form-wrapper { max-width: 100% !important; }
+            .steps { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+            .step { padding: 1.2rem 0.8rem; border-radius: 16px; margin: 0 0.2rem; }
+            .step-num { font-size: 2rem; }
+            .step-title { font-size: 0.85rem; }
+            .step-desc { font-size: 0.7rem; }
+            .features-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+            .feature-card { height: 180px; }
+            .section-title { font-size: clamp(1.5rem, 5vw, 2rem) !important; }
+            .section-intro { font-size: 0.85rem; }
+            .why-row { grid-template-columns: 1fr; }
+            .why-col-label { border-bottom: none; padding: 0.8rem 1.2rem 0.2rem; }
+            .why-col-them { border-left: none; padding: 0.2rem 1.2rem; }
+            .why-col-us { padding: 0.5rem 1.2rem 0.8rem; border-radius: 12px; margin: 0.3rem 0.5rem 0.5rem; }
+            .why-col-us::after { display: none; }
+            .why-header-row .why-col-us { border-radius: 12px; }
+            .why-row:last-child .why-col-us { border-radius: 12px; }
+            .manifesto-line-1 { font-size: 2rem !important; }
+            .typewriter-line { font-size: 1.2rem !important; }
+            .m-social { width: 38px; height: 38px; }
+            .keyword-pop { font-size: 1em; }
         }
 
-        /* Responsive — iPhone SE / small */
+        /* Responsive — iPhone SE */
         @media (max-width: 375px) {
             .heading { font-size: 1.5rem; }
-            .carousel-3d { height: 240px; }
-            .carousel-item { width: 240px; margin-left: -120px; margin-top: -100px; }
-            .carousel-item img { max-width: 220px; }
-            .carousel-label { margin-top: -60px; }
+            .carousel-3d { height: 220px; }
+            .carousel-item { width: 220px; margin-left: -110px; margin-top: -95px; }
+            .carousel-item img { max-width: 200px; }
+            .carousel-label { margin-top: -55px; }
         }
     </style>
 </head>
@@ -1451,6 +1475,7 @@
     </div>
 
     <div class="page">
+        <div class="hero-screen">
         <!-- 1. Title + Badge -->
         <div class="top">
             <div class="badge">
@@ -1522,6 +1547,8 @@
                     <p class="success-msg" id="success-msg">You're on the list. We'll be in touch soon.</p>
                 </form>
             </div>
+        </div>
+
         </div>
 
         <!-- 4. How it works -->
@@ -1722,7 +1749,7 @@
         </section>
 
         <!-- 9. Final Waitlist CTA -->
-        <section class="section" id="final-cta" style="padding: 5rem 2rem;">
+        <section class="section" id="final-cta">
             <p class="eyebrow">Don't miss out</p>
             <h2 class="section-title">Join the waitlist</h2>
             <p class="section-intro">Be first in line when we launch.</p>

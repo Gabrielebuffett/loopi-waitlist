@@ -1097,31 +1097,67 @@
             color: #bbb;
         }
         .why-col-us {
-            font-weight: 700;
+            font-weight: 800;
             color: #7E57A0;
             border-left: 1px solid rgba(0,0,0,0.04);
-            background: rgba(126,87,160,0.03);
-            transition: all 0.4s ease;
+            background: linear-gradient(160deg, rgba(126,87,160,0.06), rgba(205,176,126,0.04));
+            transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+            position: relative;
+        }
+        .why-col-us::after {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #C3ADE4, #CDB07E);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
         .why-row:not(.why-header-row):hover .why-col-us {
-            background: rgba(126,87,160,0.08);
-            color: #6B4589;
+            background: linear-gradient(160deg, rgba(126,87,160,0.15), rgba(205,176,126,0.08));
+            color: #fff;
+            -webkit-text-fill-color: #fff;
+            font-size: 0.95rem;
+            text-shadow: 0 0 20px rgba(126,87,160,0.4);
+            transform: scale(1.02);
+        }
+        .why-row:not(.why-header-row):hover .why-col-us::after {
+            opacity: 1;
         }
         .why-logo {
-            width: 70px;
+            width: 80px;
             height: auto;
+            filter: drop-shadow(0 0 15px rgba(126,87,160,0.3));
+            animation: logoBreath 4s ease-in-out infinite;
+        }
+        @keyframes logoBreath {
+            0%, 100% { filter: drop-shadow(0 0 15px rgba(126,87,160,0.2)); transform: scale(1); }
+            50% { filter: drop-shadow(0 0 30px rgba(126,87,160,0.4)); transform: scale(1.05); }
+        }
+        .why-header-row .why-col-us {
+            background: linear-gradient(160deg, rgba(126,87,160,0.1), rgba(205,176,126,0.06));
         }
         .why-col-boom {
             position: relative;
         }
-        .why-row:hover .why-col-boom {
-            font-size: 1.1rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #C3ADE4, #CDB07E);
+        .why-col-boom {
+            font-weight: 900 !important;
+            font-size: 1rem;
+            background: linear-gradient(90deg, #C3ADE4, #CDB07E, #C3ADE4);
+            background-size: 300% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: none;
+            animation: boomGrad 3s ease-in-out infinite;
+        }
+        @keyframes boomGrad {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .why-row:hover .why-col-boom {
+            font-size: 1.3rem !important;
+            letter-spacing: 2px;
+            filter: drop-shadow(0 0 20px rgba(195,173,228,0.5));
         }
         /* Exploding intro text */
         .why-explode {

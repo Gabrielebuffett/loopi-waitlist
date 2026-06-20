@@ -517,23 +517,32 @@
             margin: 0 auto;
         }
         .section-dark {
-            background: #1a1a1a;
+            background: linear-gradient(135deg, #7E57A0, #9B6FC0, #C3ADE4, #CDB07E, #9C7E45);
+            background-size: 300% 300%;
+            animation: sectionGradient 12s ease-in-out infinite;
             color: #fff;
         }
+        @keyframes sectionGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
         .section-dark .section-title { color: #fff; }
-        .section-dark .section-intro { color: rgba(255,255,255,0.5); }
-        .section-dark .section-closing { color: rgba(255,255,255,0.3); }
-        .section-dark .eyebrow { color: #C3ADE4; }
+        .section-dark .section-intro { color: rgba(255,255,255,0.7); }
+        .section-dark .section-closing { color: rgba(255,255,255,0.5); }
+        .section-dark .eyebrow { color: rgba(255,255,255,0.8); }
+        .section-dark .step-num { color: rgba(255,255,255,0.9); }
         .section-dark .step {
-            background: #242424;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(20px);
             box-shadow: none;
-            border: 1px solid rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.15);
         }
         .section-dark .step-title { color: #fff; }
-        .section-dark .step-desc { color: rgba(255,255,255,0.45); }
+        .section-dark .step-desc { color: rgba(255,255,255,0.6); }
         .section-dark .step:hover {
-            background: #2a2a2a;
-            border-color: rgba(126,87,160,0.2);
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.25);
+            transform: translateY(-4px);
         }
         .eyebrow {
             font-size: 0.7rem;

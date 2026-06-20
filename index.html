@@ -1108,31 +1108,26 @@
         }
         .why-col-us {
             font-weight: 800;
-            color: #7E57A0;
-            border-left: 1px solid rgba(0,0,0,0.04);
-            background: linear-gradient(160deg, rgba(126,87,160,0.06), rgba(205,176,126,0.04));
-            transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+            border-left: none;
+            background: linear-gradient(160deg, #7E57A0, #6B4589);
+            color: #fff;
             position: relative;
+            transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
         .why-col-us::after {
             content: '';
             position: absolute;
             left: 0; top: 0; bottom: 0;
-            width: 3px;
+            width: 4px;
             background: linear-gradient(180deg, #C3ADE4, #CDB07E);
-            opacity: 0;
-            transition: opacity 0.4s ease;
         }
         .why-row:not(.why-header-row):hover .why-col-us {
-            background: linear-gradient(160deg, rgba(126,87,160,0.15), rgba(205,176,126,0.08));
-            color: #fff;
-            -webkit-text-fill-color: #fff;
+            background: linear-gradient(160deg, #9B6FC0, #7E57A0);
             font-size: 0.95rem;
-            text-shadow: 0 0 20px rgba(126,87,160,0.4);
-            transform: scale(1.02);
-        }
-        .why-row:not(.why-header-row):hover .why-col-us::after {
-            opacity: 1;
+            text-shadow: 0 0 25px rgba(255,255,255,0.4);
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(126,87,160,0.2);
         }
         .why-logo {
             width: 80px;
@@ -1145,7 +1140,11 @@
             50% { filter: drop-shadow(0 0 30px rgba(126,87,160,0.4)); transform: scale(1.05); }
         }
         .why-header-row .why-col-us {
-            background: linear-gradient(160deg, rgba(126,87,160,0.1), rgba(205,176,126,0.06));
+            background: linear-gradient(160deg, #6B4589, #5A3878);
+            border-radius: 0 20px 0 0;
+        }
+        .why-row:last-child .why-col-us {
+            border-radius: 0 0 20px 0;
         }
         .why-col-boom {
             position: relative;

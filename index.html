@@ -1215,9 +1215,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #2a1840, #3D2B50, #3D3020, #2a1840);
-            background-size: 200% 200%;
-            animation: manifestoBg 25s ease-in-out infinite;
+            background: linear-gradient(135deg, #4A2D6E, #7E57A0, #9B6FC0, #8B6D30, #CDB07E, #7E57A0);
+            background-size: 400% 400%;
+            animation: manifestoBg 15s ease-in-out infinite;
             position: relative;
             overflow: hidden;
             z-index: 3;
@@ -1949,14 +1949,13 @@
                             explodeEl.classList.add('active');
                             setTimeout(function() {
                                 explodeEl.classList.remove('active');
+                                typewriterEl.textContent = '';
                                 manifestoContent.style.opacity = '1';
                                 manifestoContent.style.transform = 'scale(1)';
                                 manifestoContent.style.filter = 'blur(0)';
                                 typeCount = 0;
-                                setTimeout(function() {
-                                    eraseWriter();
-                                }, 1000);
-                            }, 3000);
+                                setTimeout(typeWriter, 1500);
+                            }, 5000);
                         }, 1500);
                     } else {
                         setTimeout(function() {

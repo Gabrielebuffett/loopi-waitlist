@@ -509,7 +509,7 @@
         .section {
             max-width: 100%;
             width: 100%;
-            padding: 5rem 2rem;
+            padding: 4rem 2rem;
             text-align: center;
         }
         .section-inner {
@@ -584,7 +584,7 @@
             color: #999;
             line-height: 1.8;
             max-width: 520px;
-            margin: 0 auto 3rem;
+            margin: 0 auto 2rem;
         }
         .section-closing {
             font-size: 0.95rem;
@@ -611,10 +611,10 @@
         }
         .step {
             display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 2.5rem;
+            grid-template-columns: 80px 1fr;
+            gap: 1.5rem;
             align-items: center;
-            padding: 3.5rem 3rem;
+            padding: 1.8rem 2.5rem;
             background: transparent;
             border-bottom: 1px solid rgba(255,255,255,0.08);
             box-shadow: none;
@@ -637,10 +637,10 @@
             transform: none;
         }
         .step-num {
-            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 900;
-            color: rgba(255,255,255,0.08);
-            letter-spacing: -2px;
+            color: rgba(255,255,255,0.12);
+            letter-spacing: -1px;
             line-height: 1;
             transition: all 0.6s cubic-bezier(0.16,1,0.3,1);
             position: relative;
@@ -655,7 +655,7 @@
             z-index: 1;
         }
         .step-title {
-            font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+            font-size: clamp(1rem, 2vw, 1.2rem);
             font-weight: 800;
             color: #fff;
             margin-bottom: 0.6rem;
@@ -1465,6 +1465,30 @@
             setTimeout(() => {
                 document.getElementById('success-msg').classList.remove('show');
             }, 4000);
+        });
+
+        // === SIDE SYMBOLS COLOR CHANGE ON DARK SECTIONS ===
+        var sideSymbols = document.querySelectorAll('.side-symbol');
+        var darkSections = document.querySelectorAll('.section-dark');
+
+        window.addEventListener('scroll', function() {
+            var scrollY = window.scrollY + window.innerHeight / 2;
+            var inDark = false;
+            darkSections.forEach(function(sec) {
+                var rect = sec.getBoundingClientRect();
+                var top = rect.top + window.scrollY;
+                var bottom = top + rect.height;
+                if (scrollY > top && scrollY < bottom) inDark = true;
+            });
+            sideSymbols.forEach(function(s) {
+                if (inDark) {
+                    s.style.filter = 'brightness(10)';
+                    s.style.opacity = '0.15';
+                } else {
+                    s.style.filter = 'none';
+                    s.style.opacity = '0.25';
+                }
+            });
         });
 
         // === SCROLL REVEAL FOR ALL SECTIONS ===

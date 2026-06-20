@@ -135,11 +135,24 @@
             50% { opacity: 0.3; }
         }
         .heading {
-            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-            font-weight: 800;
-            letter-spacing: -0.5px;
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            font-weight: 900;
+            letter-spacing: -1.5px;
             color: #1a1a1a;
             margin-bottom: 0.75rem;
+            line-height: 1.1;
+        }
+        .heading .highlight {
+            background: linear-gradient(135deg, #9B6FC0, #7E57A0, #C3ADE4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
         .subheading {
             font-size: clamp(0.9rem, 1.8vw, 1rem);
@@ -438,7 +451,7 @@
                 Coming Soon
             </div>
 
-            <h1 class="heading">Be the first to experience Loopi</h1>
+            <h1 class="heading">Be the first to<br>experience <span class="highlight">Loopi</span></h1>
             <p class="subheading">Smart glasses that blend cutting-edge AI with iconic style.</p>
         </div>
 

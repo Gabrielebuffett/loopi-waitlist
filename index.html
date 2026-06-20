@@ -491,9 +491,21 @@
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
-        .section-gradient .eyebrow { color: rgba(255,255,255,0.7); }
-        .section-gradient .section-title { color: #fff; }
-        .section-gradient .section-intro { color: rgba(255,255,255,0.5); }
+        .section-gradient .eyebrow { color: #C3ADE4; }
+        .section-gradient .section-title {
+            font-size: clamp(2.5rem, 5.5vw, 4rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1.05;
+            background: linear-gradient(90deg, #ffffff, #C3ADE4, #ffffff, #CDB07E, #ffffff);
+            background-size: 400% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleColorShift 10s ease-in-out infinite;
+        }
+        .section-gradient .section-intro { color: rgba(255,255,255,0.4); }
+        .section-gradient .section-closing { color: rgba(255,255,255,0.25); }
 
         /* === SECTIONS === */
         .section {

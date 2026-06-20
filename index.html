@@ -796,23 +796,24 @@
             clip-path: inset(0 0 0 0);
         }
 
-        /* Front — Neumorphic glass */
+        /* Front — Bold dark glass */
         .feature-front {
-            background: linear-gradient(160deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.04) 100%);
+            background: linear-gradient(160deg, #2e2248 0%, #1e1636 50%, #160f28 100%);
             backdrop-filter: blur(24px);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(195,173,228,0.12);
             box-shadow:
-                8px 8px 24px rgba(0,0,0,0.3),
-                -4px -4px 12px rgba(195,173,228,0.04),
-                inset 0 1px 0 rgba(255,255,255,0.1);
+                10px 10px 30px rgba(0,0,0,0.5),
+                -6px -6px 16px rgba(195,173,228,0.04),
+                inset 0 1px 0 rgba(255,255,255,0.08),
+                inset 0 -1px 0 rgba(0,0,0,0.3);
             overflow: hidden;
         }
         .feature-front::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0;
-            height: 50%;
-            background: linear-gradient(180deg, rgba(255,255,255,0.08), transparent);
+            height: 55%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 40%, transparent 100%);
             border-radius: 24px 24px 0 0;
             pointer-events: none;
         }
@@ -825,28 +826,39 @@
             border-radius: 0;
             background: none;
             border: none;
-            opacity: 0.06;
+            opacity: 0.08;
             margin: 0;
             z-index: 0;
         }
         .feature-front .feature-icon svg {
-            width: 140px;
-            height: 140px;
-            stroke-width: 1;
+            width: 160px;
+            height: 160px;
+            stroke-width: 0.8;
             animation: iconFloat 6s ease-in-out infinite;
         }
         @keyframes iconFloat {
             0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
-            50% { transform: translateY(-8px) scale(1.05) rotate(3deg); }
+            50% { transform: translateY(-10px) scale(1.08) rotate(3deg); }
         }
-        .feature-card:nth-child(2) .feature-front .feature-icon svg { animation-delay: -1s; }
-        .feature-card:nth-child(3) .feature-front .feature-icon svg { animation-delay: -2s; }
-        .feature-card:nth-child(4) .feature-front .feature-icon svg { animation-delay: -3s; }
-        .feature-card:nth-child(5) .feature-front .feature-icon svg { animation-delay: -4s; }
-        .feature-card:nth-child(6) .feature-front .feature-icon svg { animation-delay: -5s; }
+        .feature-card:nth-child(1) .feature-front .feature-icon svg { color: #C3ADE4; }
+        .feature-card:nth-child(2) .feature-front .feature-icon svg { color: #B48ED2; animation-delay: -1s; }
+        .feature-card:nth-child(3) .feature-front .feature-icon svg { color: #CDB07E; animation-delay: -2s; }
+        .feature-card:nth-child(4) .feature-front .feature-icon svg { color: #9C7E45; animation-delay: -3s; }
+        .feature-card:nth-child(5) .feature-front .feature-icon svg { color: #C3ADE4; animation-delay: -4s; }
+        .feature-card:nth-child(6) .feature-front .feature-icon svg { color: #CDB07E; animation-delay: -5s; }
+        /* Bottom accent line */
+        .feature-front::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 15%; right: 15%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(195,173,228,0.3), transparent);
+            border-radius: 2px;
+        }
         .feature-front .feature-name {
             position: relative;
             z-index: 1;
+            text-shadow: 0 0 30px rgba(195,173,228,0.3);
         }
 
         /* Back — Rich gradient */

@@ -1452,80 +1452,133 @@
             50% { opacity: 0; }
         }
 
-        /* Section responsive */
-        /* Responsive — iPad */
+        /* ===== RESPONSIVE ===== */
+
+        /* iPad Pro / large tablets */
         @media (max-width: 1024px) {
-            .section { min-height: 100vh; padding: 3rem 2rem; }
             .carousel-item { width: 400px; margin-left: -200px; }
             .carousel-item img { max-width: 380px; }
             .steps { grid-template-columns: repeat(2, 1fr); }
             .features-grid { grid-template-columns: 1fr 1fr; }
             .why-single-card { max-width: 100%; }
-            .why-row { grid-template-columns: 1fr 1fr 1fr; }
         }
 
-        /* Responsive — iPad Mini */
+        /* iPad / iPad Mini */
         @media (max-width: 768px) {
-            .carousel-3d { height: 320px; }
-            .carousel-item { width: 320px; margin-left: -160px; margin-top: -140px; }
-            .carousel-item img { max-width: 300px; }
+            .section { padding: 3rem 1.5rem; }
+            .hero-screen { padding: 1.5rem; }
             .heading { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+            .section-title { font-size: clamp(1.6rem, 4vw, 2.2rem) !important; }
+            .carousel-3d { height: 300px; }
+            .carousel-item { width: 300px; margin-left: -150px; margin-top: -130px; }
+            .carousel-item img { max-width: 280px; }
             .carousel-nav { display: none; }
             .steps { grid-template-columns: repeat(2, 1fr); }
             .step-num { font-size: 2.5rem; }
+            .step { padding: 1.5rem 1rem; border-radius: 18px; }
             .features-grid { grid-template-columns: 1fr 1fr; }
             .feature-card { height: 200px; }
+            .feature-name { font-size: 0.9rem; }
+            .why-row { font-size: 0.8rem; }
             .manifesto-line-1 { font-size: clamp(2rem, 6vw, 3rem) !important; }
-            .section-title { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+            .typewriter-line { font-size: clamp(1.2rem, 3vw, 1.8rem) !important; }
+            .grid-bg { grid-template-columns: repeat(10, 1fr); grid-template-rows: repeat(6, 1fr); }
+            .section-gradient .section-title { font-size: clamp(1.6rem, 4vw, 2.2rem) !important; }
+            .keyword-pop { font-size: 1em; }
+            .follow-us-text { bottom: 4.5rem; font-size: 0.65rem; }
+            .manifesto-socials { bottom: 1.5rem; }
         }
 
-        /* Responsive — iPhone */
+        /* iPhone / large phones */
         @media (max-width: 480px) {
+            .section { padding: 2rem 1rem; }
             .hero-screen { padding: 1rem; }
-            .section { min-height: 100vh; padding: 2.5rem 1.2rem; }
-            .heading { font-size: 1.8rem; letter-spacing: -1px; }
-            .badge { padding: 6px 14px; font-size: 11px; margin-bottom: 0.5rem; }
-            .carousel-3d { height: 260px; }
-            .carousel-item { width: 260px; margin-left: -130px; margin-top: -110px; }
-            .carousel-item img { max-width: 240px; }
+            .heading { font-size: 1.6rem; letter-spacing: -1px; }
+            .section-title { font-size: 1.5rem !important; }
+            .section-intro { font-size: 0.82rem; margin-bottom: 1.5rem !important; }
+            .badge { padding: 6px 12px; font-size: 10px; margin-bottom: 0.5rem; }
+            .subheading { font-size: 0.85rem !important; }
+
+            /* Carousel */
+            .carousel-3d { height: 240px; }
+            .carousel-item { width: 240px; margin-left: -120px; margin-top: -100px; }
+            .carousel-item img { max-width: 220px; }
             .carousel-item.active img { transform: scale(1.05); }
-            .carousel-label { margin-top: -70px; }
-            .color-name { font-size: 0.9rem; }
-            .color-desc { font-size: 0.7rem; }
+            .carousel-label { margin-top: -60px; }
+            .color-name { font-size: 0.85rem; }
+            .color-desc { font-size: 0.65rem; }
             .swatches { gap: 8px; }
             .swatch { width: 22px; height: 22px; }
+
+            /* Form */
             .input-group { flex-direction: column; }
-            .btn-join { width: 100%; margin-top: 4px; }
+            .btn-join { width: 100%; margin-top: 4px; padding: 12px 20px; }
             .form-wrapper { max-width: 100% !important; }
+
+            /* How it works */
             .steps { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
-            .step { padding: 1.2rem 0.8rem; border-radius: 16px; margin: 0 0.2rem; }
-            .step-num { font-size: 2rem; }
-            .step-title { font-size: 0.85rem; }
-            .step-desc { font-size: 0.7rem; }
-            .features-grid { grid-template-columns: 1fr; gap: 0.8rem; }
-            .feature-card { height: 180px; }
-            .section-title { font-size: clamp(1.5rem, 5vw, 2rem) !important; }
-            .section-intro { font-size: 0.85rem; }
+            .step { padding: 1rem 0.7rem; border-radius: 14px; margin: 0 0.15rem; }
+            .step-num { font-size: 1.8rem; margin-bottom: 0.5rem; }
+            .step-title { font-size: 0.8rem; }
+            .step-desc { font-size: 0.65rem; }
+            .grid-bg { grid-template-columns: repeat(8, 1fr); grid-template-rows: repeat(5, 1fr); }
+
+            /* Features */
+            .features-grid { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+            .feature-card { height: 160px; }
+            .feature-name { font-size: 0.8rem; }
+            .feature-front .feature-icon svg { width: 100px; height: 100px; }
+            .feature-desc { font-size: 0.72rem; }
+
+            /* Video */
+            .video-section { min-height: 50vh; }
+
+            /* Why Loopi */
+            .why-single-card { border-radius: 18px; }
             .why-row { grid-template-columns: 1fr; }
-            .why-col-label { border-bottom: none; padding: 0.8rem 1.2rem 0.2rem; }
-            .why-col-them { border-left: none; padding: 0.2rem 1.2rem; }
-            .why-col-us { padding: 0.5rem 1.2rem 0.8rem; border-radius: 12px; margin: 0.3rem 0.5rem 0.5rem; }
+            .why-col-label { border-bottom: none; padding: 0.7rem 1rem 0.15rem; font-size: 0.8rem; }
+            .why-col-them { border-left: none; padding: 0.15rem 1rem; font-size: 0.75rem; }
+            .why-col-us { padding: 0.4rem 1rem 0.7rem; border-radius: 10px; margin: 0.2rem 0.4rem 0.4rem; font-size: 0.8rem; }
             .why-col-us::after { display: none; }
-            .why-header-row .why-col-us { border-radius: 12px; }
-            .why-row:last-child .why-col-us { border-radius: 12px; }
-            .manifesto-line-1 { font-size: 2rem !important; }
-            .typewriter-line { font-size: 1.2rem !important; }
-            .m-social { width: 38px; height: 38px; }
-            .keyword-pop { font-size: 1em; }
+            .why-header-row .why-col-us { border-radius: 10px; }
+            .why-row:last-child .why-col-us { border-radius: 10px; }
+            .why-bg-symbol { width: 800px; }
+            .why-logo { width: 50px; }
+
+            /* Manifesto */
+            .manifesto-line-1 { font-size: 1.8rem !important; }
+            .typewriter-line { font-size: 1rem !important; min-height: 2rem !important; }
+            .explode-symbol { max-width: 200px !important; }
+            .follow-us-text { bottom: 4rem; font-size: 0.6rem; letter-spacing: 3px; }
+            .manifesto-socials { bottom: 1.2rem; gap: 12px; }
+            .m-social { width: 36px; height: 36px; }
+            .m-social svg { width: 15px; height: 15px; }
+
+            /* Footer */
+            .footer-text { font-size: 0.65rem; }
         }
 
-        /* Responsive — iPhone SE */
+        /* iPhone SE / small phones */
         @media (max-width: 375px) {
-            .heading { font-size: 1.5rem; }
-            .carousel-3d { height: 220px; }
-            .carousel-item { width: 220px; margin-left: -110px; margin-top: -95px; }
-            .carousel-item img { max-width: 200px; }
-            .carousel-label { margin-top: -55px; }
+            .heading { font-size: 1.4rem; }
+            .section-title { font-size: 1.3rem !important; }
+            .carousel-3d { height: 200px; }
+            .carousel-item { width: 200px; margin-left: -100px; margin-top: -85px; }
+            .carousel-item img { max-width: 180px; }
+            .carousel-label { margin-top: -50px; }
+            .step-num { font-size: 1.5rem; }
+            .feature-card { height: 140px; }
+            .features-grid { gap: 0.4rem; }
+            .manifesto-line-1 { font-size: 1.5rem !important; }
+            .typewriter-line { font-size: 0.85rem !important; }
+        }
+
+        /* Landscape phones */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .section { min-height: auto; padding: 2rem 1.5rem; }
+            .hero-screen { min-height: auto; padding: 1.5rem; }
+            .video-section { min-height: 100vh; }
+            .manifesto-section { min-height: 100vh; }
         }
     </style>
 </head>

@@ -545,9 +545,19 @@
         }
         .section-dark .section-title {
             color: #fff;
-            font-size: clamp(2rem, 4.5vw, 3rem);
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
             font-weight: 900;
             letter-spacing: -1.5px;
+        }
+        .section-dark .section-title .word-dark {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+            filter: blur(8px);
+            animation: wordDarkReveal 0.8s cubic-bezier(0.16,1,0.3,1) forwards;
+        }
+        @keyframes wordDarkReveal {
+            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
         }
         .section-dark .section-intro { color: rgba(255,255,255,0.7); }
         .section-dark .section-closing { color: rgba(255,255,255,0.5); }
@@ -1177,7 +1187,7 @@
         <section class="section section-dark" id="how-it-works">
             <div class="section-inner">
                 <p class="eyebrow reveal">How it works</p>
-                <h2 class="section-title reveal reveal-delay-1">A calm loop, worn all day</h2>
+                <h2 class="section-title" id="hiw-title">A calm loop, worn all day</h2>
                 <p class="section-intro reveal reveal-delay-2">Loopi doesn't ask for your attention. It supports your habits quietly, then gets out of the way.</p>
 
                 <div class="steps" id="steps-timeline">
@@ -1514,6 +1524,33 @@
                 }
             });
         });
+
+        // === HOW IT WORKS TITLE WORD REVEAL ===
+        (function() {
+            var hiwTitle = document.getElementById('hiw-title');
+            var words = hiwTitle.textContent.split(' ');
+            hiwTitle.textContent = '';
+            words.forEach(function(word, i) {
+                var span = document.createElement('span');
+                span.className = 'word-dark';
+                span.textContent = word;
+                span.style.animationDelay = (0.15 * i) + 's';
+                span.style.animationPlayState = 'paused';
+                hiwTitle.appendChild(span);
+                if (i < words.length - 1) hiwTitle.appendChild(document.createTextNode(' '));
+            });
+            var hiwObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        hiwTitle.querySelectorAll('.word-dark').forEach(function(w) {
+                            w.style.animationPlayState = 'running';
+                        });
+                        hiwObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            hiwObserver.observe(hiwTitle);
+        })();
 
         // === STEP CARDS MOUSE GLOW ===
         document.querySelectorAll('.step[data-step]').forEach(function(step) {

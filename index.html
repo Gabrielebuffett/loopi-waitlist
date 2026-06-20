@@ -90,10 +90,15 @@
         }
 
         /* Staggered reveal for children */
-        .top .badge { animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.1s forwards; opacity: 0; }
-        .top .heading { animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s forwards; opacity: 0; }
-        .top .subheading { animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.35s forwards; opacity: 0; }
-        .top .form-wrapper { animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.5s forwards; opacity: 0; }
+        .top .badge { animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.1s forwards; opacity: 0; }
+        .top .heading { animation: headingReveal 1.2s cubic-bezier(0.16,1,0.3,1) 0.25s forwards; opacity: 0; }
+        .top .subheading { animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.5s forwards; opacity: 0; }
+        .top .form-wrapper { animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.7s forwards; opacity: 0; }
+
+        @keyframes headingReveal {
+            from { opacity: 0; transform: translateY(40px) scale(0.92); filter: blur(8px); }
+            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
 
         .logo {
             width: clamp(140px, 25vw, 200px);
@@ -141,6 +146,15 @@
             color: #1a1a1a;
             margin-bottom: 0.75rem;
             line-height: 1.1;
+        }
+        .word {
+            display: inline-block;
+            opacity: 0;
+            animation: wordReveal 0.8s cubic-bezier(0.16,1,0.3,1) forwards;
+        }
+        @keyframes wordReveal {
+            from { opacity: 0; transform: translateY(30px) rotateX(40deg); filter: blur(6px); }
+            to { opacity: 1; transform: translateY(0) rotateX(0); filter: blur(0); }
         }
         .heading .highlight {
             background: linear-gradient(135deg, #9B6FC0, #7E57A0, #C3ADE4);
@@ -451,7 +465,14 @@
                 Coming Soon
             </div>
 
-            <h1 class="heading">Be the first to<br>experience <span class="highlight">Loopi</span></h1>
+            <h1 class="heading">
+                <span class="word" style="animation-delay:0.2s">Be</span>
+                <span class="word" style="animation-delay:0.28s">the</span>
+                <span class="word" style="animation-delay:0.36s">first</span>
+                <span class="word" style="animation-delay:0.44s">to</span><br>
+                <span class="word" style="animation-delay:0.52s">experience</span>
+                <span class="word highlight" style="animation-delay:0.62s">Loopi</span>
+            </h1>
             <p class="subheading">Smart glasses that blend cutting-edge AI with iconic style.</p>
         </div>
 
@@ -513,7 +534,7 @@
         <!-- 4. Logo + Social — footer -->
         <div class="divider"></div>
 
-        <img src="logo.svg" alt="Loopi" class="logo" style="margin-bottom: 0.4rem; margin-top: 3rem;">
+        <img src="logo.svg" alt="Loopi" class="logo" style="margin-bottom: 0.4rem; margin-top: 6rem;">
         <p class="tagline" style="margin-bottom: 1.5rem;">Make habit reality.</p>
 
         <div class="socials">

@@ -634,19 +634,16 @@
             formData.append('email', email);
             fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
+                mode: 'no-cors',
                 body: formData
-            }).then(() => {
-                emailInput.value = '';
-                btn.textContent = 'Join Waitlist';
-                btn.disabled = false;
-                document.getElementById('success-msg').classList.add('show');
-                setTimeout(() => {
-                    document.getElementById('success-msg').classList.remove('show');
-                }, 4000);
-            }).catch(() => {
-                btn.textContent = 'Join Waitlist';
-                btn.disabled = false;
             });
+            emailInput.value = '';
+            btn.textContent = 'Join Waitlist';
+            btn.disabled = false;
+            document.getElementById('success-msg').classList.add('show');
+            setTimeout(() => {
+                document.getElementById('success-msg').classList.remove('show');
+            }, 4000);
         });
     </script>
 </body>

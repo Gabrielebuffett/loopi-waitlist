@@ -1351,6 +1351,29 @@
 
         .explode-tagline { display: none; }
 
+        .follow-us-text {
+            position: absolute;
+            bottom: 5.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            z-index: 5;
+            background: linear-gradient(90deg, #C3ADE4, #CDB07E, #C3ADE4);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: followShift 5s ease-in-out infinite;
+            white-space: nowrap;
+        }
+        @keyframes followShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
         /* Manifesto socials */
         .manifesto-socials {
             position: absolute;
@@ -1773,6 +1796,7 @@
                     <svg class="explode-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 130"><defs><linearGradient id="explode-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C3ADE4"/><stop offset="55%" stop-color="#CDB07E"/><stop offset="100%" stop-color="#9C7E45"/></linearGradient></defs><path d="M 80 50 C 80 26, 56 14, 36 14 C 16 14, 6 30, 6 50 C 6 70, 16 86, 36 86 C 56 86, 80 74, 80 50 C 80 26, 104 14, 124 14 C 144 14, 154 30, 154 50 C 154 70, 144 86, 124 86 C 104 86, 80 74, 80 50 Z" transform="translate(20,15)" fill="none" stroke="url(#explode-grad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
             </div>
+            <p class="follow-us-text">Follow us on</p>
             <div class="manifesto-socials">
                 <a href="https://www.facebook.com/lisia.io/" class="m-social" aria-label="Facebook" target="_blank">
                     <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>

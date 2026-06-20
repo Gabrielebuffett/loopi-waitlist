@@ -1041,7 +1041,7 @@
             line-height: 1.6;
         }
 
-        /* Why Loopi — Neumorphic on white */
+        /* Why Loopi */
         #why-loopi {
             background: linear-gradient(180deg, #e8e8ee, #f0eff4, #e8e8ee);
         }
@@ -1049,103 +1049,79 @@
         #why-loopi .section-title { color: #1a1a1a; }
         #why-loopi .section-intro { color: #999; }
         #why-loopi .section-closing { color: #bbb; }
-        .why-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.8rem;
-            max-width: 700px;
+        .why-single-card {
+            max-width: 800px;
             margin: 0 auto;
-        }
-        .why-card {
-            border-radius: 20px;
-            padding: 1.4rem 1.5rem;
-            position: relative;
-            transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+            background: linear-gradient(160deg, #eae8f0, #e0dee8);
+            border-radius: 24px;
             overflow: hidden;
-        }
-        .why-them {
-            background: linear-gradient(160deg, #e2e0e8, #d8d6de);
-            border: none;
             box-shadow:
-                6px 6px 16px rgba(0,0,0,0.06),
-                -4px -4px 12px rgba(255,255,255,0.8),
-                inset 0 1px 0 rgba(255,255,255,0.6);
-        }
-        .why-us {
-            background: linear-gradient(160deg, #f0ecf8, #e8e2f2);
-            border: 2px solid rgba(126,87,160,0.15);
-            box-shadow:
-                6px 6px 16px rgba(0,0,0,0.06),
-                -4px -4px 12px rgba(255,255,255,0.8),
-                inset 0 1px 0 rgba(255,255,255,0.7),
-                0 0 30px rgba(126,87,160,0.05);
-        }
-        .why-card:hover {
-            transform: translateY(-4px);
-        }
-        .why-them:hover {
-            box-shadow:
-                8px 8px 22px rgba(0,0,0,0.08),
-                -6px -6px 14px rgba(255,255,255,0.9),
+                10px 10px 30px rgba(0,0,0,0.08),
+                -8px -8px 20px rgba(255,255,255,0.9),
                 inset 0 1px 0 rgba(255,255,255,0.7);
         }
-        .why-us:hover {
-            border-color: rgba(126,87,160,0.25);
-            transform: translateY(-6px) scale(1.02);
-            box-shadow:
-                10px 10px 30px rgba(0,0,0,0.1),
-                -6px -6px 14px rgba(255,255,255,0.9),
-                inset 0 1px 0 rgba(255,255,255,0.8),
-                0 0 50px rgba(126,87,160,0.1);
+        .why-row {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
         }
-        .why-logo {
-            width: 80px;
-            height: auto;
+        .why-row:last-child { border-bottom: none; }
+        .why-row:not(.why-header-row):hover {
+            background: rgba(126,87,160,0.04);
         }
-        .why-label {
+        .why-header-row {
+            border-bottom: 2px solid rgba(0,0,0,0.06);
+        }
+        .why-col-label,
+        .why-col-them,
+        .why-col-us {
+            padding: 1.1rem 1.5rem;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        .why-col-label {
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.2px;
+        }
+        .why-col-them {
+            color: #aaa;
+            border-left: 1px solid rgba(0,0,0,0.04);
+        }
+        .why-header-row .why-col-them {
             font-size: 0.7rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin: 0;
+            color: #bbb;
         }
-        .why-them .why-label { color: #bbb; }
-        .why-list {
-            margin-top: 1.2rem;
-        }
-        .why-text {
-            font-size: 0.88rem;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0.6rem 0;
-            border-bottom: 1px solid rgba(0,0,0,0.04);
-        }
-        .why-text:last-child { border-bottom: none; }
-        .why-them .why-text { color: #aaa; }
-        .why-us .why-text {
-            color: #1a1a1a;
-            font-weight: 600;
-        }
-        .why-us:hover .why-text {
+        .why-col-us {
+            font-weight: 700;
             color: #7E57A0;
+            border-left: 1px solid rgba(0,0,0,0.04);
+            background: rgba(126,87,160,0.03);
+            transition: all 0.4s ease;
         }
-        .why-them .why-text::before {
-            content: '';
-            display: inline-block;
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            background: #ddd;
-            margin-right: 10px;
-            vertical-align: middle;
+        .why-row:not(.why-header-row):hover .why-col-us {
+            background: rgba(126,87,160,0.08);
+            color: #6B4589;
         }
-        .why-us .why-text::before {
-            content: '';
-            display: inline-block;
-            width: 6px; height: 6px;
-            border-radius: 50%;
+        .why-logo {
+            width: 70px;
+            height: auto;
+        }
+        .why-col-boom {
+            position: relative;
+        }
+        .why-row:hover .why-col-boom {
+            font-size: 1.1rem;
+            font-weight: 900;
             background: linear-gradient(135deg, #C3ADE4, #CDB07E);
-            margin-right: 10px;
-            vertical-align: middle;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
         }
         /* Exploding intro text */
         .why-explode {
@@ -1174,6 +1150,8 @@
             position: relative;
             overflow: hidden;
             z-index: 3;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
         }
         .manifesto-section::before {
             content: '';
@@ -1505,26 +1483,36 @@
             <h2 class="section-title">Same form factor. Opposite intent.</h2>
             <p class="section-intro">Smart glasses arrived promising to capture the world. <span class="why-explode">Loopi was built to give it back.</span></p>
 
-            <div class="why-grid">
-                <div class="why-card why-them">
-                    <h3 class="why-label">Conventional</h3>
-                    <div class="why-list">
-                        <p class="why-text">Captures attention, data, images</p>
-                        <p class="why-text">Ambiguous surveillance</p>
-                        <p class="why-text">Gadget, armour, ostentatious tech</p>
-                        <p class="why-text">Speakers others can hear</p>
-                        <p class="why-text">Front-facing camera, always implied</p>
-                    </div>
+            <div class="why-single-card">
+                <div class="why-row why-header-row">
+                    <div class="why-col-label"></div>
+                    <div class="why-col-them">Others</div>
+                    <div class="why-col-us"><img src="logo.svg" alt="Loopi" class="why-logo"></div>
                 </div>
-                <div class="why-card why-us">
-                    <img src="logo.svg" alt="Loopi" class="why-logo">
-                    <div class="why-list">
-                        <p class="why-text">Gives back presence and calm</p>
-                        <p class="why-text">Consent Halo, visible transparency</p>
-                        <p class="why-text">Atelier eyewear, light, not armour</p>
-                        <p class="why-text">Bone-conduction, only you hear</p>
-                        <p class="why-text">No camera. By design.</p>
-                    </div>
+                <div class="why-row">
+                    <div class="why-col-label">Relationship</div>
+                    <div class="why-col-them">Captures attention, data</div>
+                    <div class="why-col-us">Gives back presence and calm</div>
+                </div>
+                <div class="why-row">
+                    <div class="why-col-label">Social signal</div>
+                    <div class="why-col-them">Ambiguous surveillance</div>
+                    <div class="why-col-us">Consent Halo, visible transparency</div>
+                </div>
+                <div class="why-row">
+                    <div class="why-col-label">Aesthetic</div>
+                    <div class="why-col-them">Gadget, ostentatious tech</div>
+                    <div class="why-col-us">Atelier eyewear, light not armour</div>
+                </div>
+                <div class="why-row">
+                    <div class="why-col-label">Audio</div>
+                    <div class="why-col-them">Speakers others can hear</div>
+                    <div class="why-col-us">Bone-conduction, only you</div>
+                </div>
+                <div class="why-row">
+                    <div class="why-col-label">Camera</div>
+                    <div class="why-col-them">Front-facing, always implied</div>
+                    <div class="why-col-us why-col-boom">None. By design.</div>
                 </div>
             </div>
 

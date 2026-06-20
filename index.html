@@ -1240,16 +1240,13 @@
             overflow: hidden;
             background: #000;
         }
-        .fullscreen-video {
+        .fullscreen-video-iframe {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            object-fit: cover;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         /* Manifesto section */
@@ -1737,9 +1734,7 @@
 
         <!-- 6.5 Video -->
         <section class="video-section" id="demo-video">
-            <video class="fullscreen-video" autoplay muted loop playsinline>
-                <source src="https://cdn.arcade.software/b-roll/a6d5cf4d-4567-4530-93e8-71bc8bae6d11.mp4" type="video/mp4">
-            </video>
+            <iframe src="https://app.arcade.software/share/videos/FqnKigcJrgudjMFoxzK1?embed&show_copy_link=true" title="Loopi Demo" frameborder="0" loading="lazy" allowfullscreen allow="clipboard-write; autoplay" class="fullscreen-video-iframe"></iframe>
         </section>
 
         <!-- 7. Why Loopi -->

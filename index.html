@@ -1062,31 +1062,30 @@
         .why-single-card {
             max-width: 800px;
             margin: 0 auto;
-            background: linear-gradient(160deg, #eae8f0, #e0dee8);
-            border-radius: 24px;
+            background: linear-gradient(160deg, #eceaef, #e4e2e9);
+            border-radius: 28px;
             overflow: hidden;
             box-shadow:
-                10px 10px 30px rgba(0,0,0,0.08),
-                -8px -8px 20px rgba(255,255,255,0.9),
-                inset 0 1px 0 rgba(255,255,255,0.7);
+                12px 12px 30px rgba(0,0,0,0.08),
+                -8px -8px 24px rgba(255,255,255,0.85),
+                inset 0 2px 0 rgba(255,255,255,0.6),
+                inset 0 -1px 0 rgba(0,0,0,0.03);
         }
         .why-row {
             display: grid;
             grid-template-columns: 1.2fr 1fr 1fr;
-            border-bottom: 1px solid rgba(0,0,0,0.04);
             transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
         }
-        .why-row:last-child { border-bottom: none; }
         .why-row:not(.why-header-row):hover {
-            background: rgba(126,87,160,0.04);
+            background: rgba(126,87,160,0.03);
         }
         .why-header-row {
-            border-bottom: 2px solid rgba(0,0,0,0.06);
+            border-bottom: none;
         }
         .why-col-label,
         .why-col-them,
         .why-col-us {
-            padding: 1.1rem 1.5rem;
+            padding: 1.2rem 1.5rem;
             font-size: 0.85rem;
             line-height: 1.5;
         }
@@ -1094,10 +1093,16 @@
             font-weight: 700;
             color: #1a1a1a;
             letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
         }
         .why-col-them {
             color: #aaa;
             border-left: 1px solid rgba(0,0,0,0.04);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            display: flex;
+            align-items: center;
         }
         .why-header-row .why-col-them {
             font-size: 0.7rem;
@@ -1105,6 +1110,8 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #bbb;
+            justify-content: center;
+            padding: 1.5rem;
         }
         .why-col-us {
             font-weight: 800;
@@ -1114,20 +1121,43 @@
             position: relative;
             transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
             text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .why-col-us::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
         }
         .why-col-us::after {
             content: '';
             position: absolute;
             left: 0; top: 0; bottom: 0;
-            width: 4px;
-            background: linear-gradient(180deg, #C3ADE4, #CDB07E);
+            width: 3px;
+            background: linear-gradient(180deg, #CDB07E, #9C7E45);
+        }
+        .why-header-row .why-col-us {
+            background: linear-gradient(160deg, #6B4589, #5A3878);
+            border-radius: 0 28px 0 0;
+            padding: 1.5rem;
+        }
+        .why-row:last-child .why-col-us {
+            border-radius: 0 0 28px 0;
+            border-bottom: none;
+        }
+        .why-row:last-child .why-col-label,
+        .why-row:last-child .why-col-them {
+            border-bottom: none;
         }
         .why-row:not(.why-header-row):hover .why-col-us {
             background: linear-gradient(160deg, #9B6FC0, #7E57A0);
-            font-size: 0.95rem;
             text-shadow: 0 0 25px rgba(255,255,255,0.4);
-            transform: scale(1.03);
-            box-shadow: 0 0 30px rgba(126,87,160,0.2);
+            box-shadow: 0 0 30px rgba(126,87,160,0.15);
         }
         .why-logo {
             width: 80px;

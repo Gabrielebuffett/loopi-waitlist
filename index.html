@@ -156,17 +156,9 @@
             from { opacity: 0; transform: translateY(30px) rotateX(40deg); filter: blur(6px); }
             to { opacity: 1; transform: translateY(0) rotateX(0); filter: blur(0); }
         }
-        .heading .highlight {
-            background: linear-gradient(135deg, #9B6FC0, #7E57A0, #C3ADE4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            background-size: 200% 200%;
-            animation: wordReveal 0.8s cubic-bezier(0.16,1,0.3,1) forwards, gradientShift 4s ease-in-out 0.8s infinite;
-        }
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        .loopi-text {
+            color: #7E57A0;
+            -webkit-text-fill-color: #7E57A0;
         }
         .subheading {
             font-size: clamp(0.95rem, 1.8vw, 1.05rem);
@@ -482,7 +474,7 @@
                 <span class="word" style="animation-delay:0.36s">first</span>
                 <span class="word" style="animation-delay:0.44s">to</span><br>
                 <span class="word" style="animation-delay:0.52s">experience</span>
-                <span class="word highlight" style="animation-delay:0.62s">Loopi</span>
+                <span class="word loopi-text" style="animation-delay:0.62s">Loopi</span>
             </h1>
             <p class="subheading" id="subheading">Smart glasses that blend cutting-edge AI with iconic style.</p>
         </div>

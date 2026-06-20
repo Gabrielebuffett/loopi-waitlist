@@ -478,6 +478,23 @@
             padding-bottom: 1.5rem;
         }
 
+        /* Section gradient — viola/oro */
+        .section-gradient {
+            background: linear-gradient(135deg, #4A3260, #6B4589, #6B5020);
+            background-size: 200% 200%;
+            animation: sectionGrad 20s ease-in-out infinite;
+            color: #fff;
+            position: relative;
+            z-index: 3;
+        }
+        @keyframes sectionGrad {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .section-gradient .eyebrow { color: rgba(255,255,255,0.7); }
+        .section-gradient .section-title { color: #fff; }
+        .section-gradient .section-intro { color: rgba(255,255,255,0.5); }
+
         /* === SECTIONS === */
         .section {
             max-width: 100%;
@@ -1149,7 +1166,7 @@
         </section>
 
         <!-- 5. Features -->
-        <section class="section section-dark" id="features">
+        <section class="section section-gradient" id="features">
             <p class="eyebrow">Features</p>
             <h2 class="section-title">Six decisions, one philosophy</h2>
             <p class="section-intro">Every feature exists to protect your attention — not to capture it.</p>

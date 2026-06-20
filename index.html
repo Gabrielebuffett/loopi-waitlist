@@ -877,10 +877,13 @@
             border: 1px solid rgba(255,255,255,0.06);
         }
         .feature-name {
-            font-size: 1rem;
-            font-weight: 800;
-            color: rgba(255,255,255,0.9);
-            letter-spacing: -0.3px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -0.5px;
+            text-shadow: 0 0 30px rgba(255,255,255,0.2);
+            position: relative;
+            z-index: 1;
         }
         .feature-desc {
             font-size: 0.82rem;
@@ -907,9 +910,14 @@
         .feature-back .feature-name {
             color: #fff;
             margin-bottom: 0.6rem;
-            font-size: 1.05rem;
+            font-size: 1.3rem;
             position: relative;
             z-index: 1;
+            background: linear-gradient(90deg, #fff, #C3ADE4, #CDB07E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
         }
         .feature-back .feature-desc {
             position: relative;

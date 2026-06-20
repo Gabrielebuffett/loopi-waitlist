@@ -1187,19 +1187,43 @@
             color: #fff;
             text-shadow: 0 0 60px rgba(255,255,255,0.15);
         }
-        .manifesto-line-2 {
-            font-size: clamp(3rem, 8vw, 6rem);
+        /* Full screen flash */
+        .manifesto-flash {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0;
+        }
+        .manifesto-flash span {
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 900;
+            letter-spacing: -4px;
             background: linear-gradient(90deg, #C3ADE4, #CDB07E, #C3ADE4);
             background-size: 300% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: manifestoGrad 6s ease-in-out infinite;
-            transition-delay: 0.3s;
+            animation: flashGrad 3s ease-in-out infinite;
+            text-align: center;
+            line-height: 1;
         }
-        @keyframes manifestoGrad {
+        @keyframes flashGrad {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
+        }
+        .manifesto-flash.flash-active {
+            animation: flashPulse 3s ease-in-out infinite;
+        }
+        @keyframes flashPulse {
+            0% { opacity: 0; transform: scale(0.8); }
+            15% { opacity: 1; transform: scale(1.05); }
+            35% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0; transform: scale(1.1); }
+            100% { opacity: 0; transform: scale(0.8); }
         }
 
         /* Section responsive */
@@ -1522,8 +1546,10 @@
         <!-- 8. Manifesto -->
         <section class="manifesto-section" id="manifesto">
             <div class="manifesto-inner">
-                <p class="manifesto-line manifesto-line-1" id="manifesto-1">Wear the loop.</p>
-                <p class="manifesto-line manifesto-line-2" id="manifesto-2">Make habit reality.</p>
+                <p class="manifesto-line manifesto-line-1">Wear the loop.</p>
+            </div>
+            <div class="manifesto-flash" id="manifesto-flash">
+                <span>MAKE HABIT REALITY</span>
             </div>
         </section>
 
@@ -1761,16 +1787,16 @@
         }, { threshold: 0.3 });
         timelineObserver.observe(stepsTimeline);
 
-        // === MANIFESTO SCROLL REVEAL ===
-        var manifestoLines = document.querySelectorAll('.manifesto-line');
+        // === MANIFESTO SCROLL REVEAL + FLASH ===
+        var manifestoLine = document.querySelector('.manifesto-line-1');
+        var manifestoFlash = document.getElementById('manifesto-flash');
         var manifestoObserver = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
-                    manifestoLines.forEach(function(line, i) {
-                        setTimeout(function() {
-                            line.classList.add('visible');
-                        }, i * 400);
-                    });
+                    manifestoLine.classList.add('visible');
+                    setTimeout(function() {
+                        manifestoFlash.classList.add('flash-active');
+                    }, 1200);
                     manifestoObserver.unobserve(entry.target);
                 }
             });

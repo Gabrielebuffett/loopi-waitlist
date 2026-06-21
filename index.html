@@ -173,6 +173,41 @@
         }
 
 
+        /* Back button */
+        .back-btn {
+            position: fixed;
+            top: 1.2rem;
+            left: 1.5rem;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: rgba(232,232,238,0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0,0,0,0.06);
+            color: #1a1a1a;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: inherit;
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+        .back-btn:hover {
+            background: #fff;
+            transform: translateX(-4px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        .back-btn svg {
+            transition: transform 0.3s ease;
+        }
+        .back-btn:hover svg {
+            transform: translateX(-3px);
+        }
+
         /* Ambient orbs */
         .ambient {
             position: fixed;
@@ -1751,6 +1786,11 @@
         <div class="orb orb-2"></div>
         <div class="orb orb-3"></div>
     </div>
+
+    <a href="https://www.lisia.io" class="back-btn" target="_top">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Lisia
+    </a>
 
     <div class="page">
         <div class="hero-screen">

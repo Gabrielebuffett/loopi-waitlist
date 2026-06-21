@@ -1239,6 +1239,20 @@
             min-height: 100vh;
             overflow: hidden;
             background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @media (max-width: 768px) {
+            .video-section { min-height: 50vh; }
+            .fullscreen-video { object-fit: contain; }
+        }
+        @media (max-width: 480px) {
+            .video-section { min-height: 40vh; }
+        }
+        @media (max-height: 500px) and (orientation: landscape) {
+            .video-section { min-height: 100vh; }
+            .fullscreen-video { object-fit: cover; }
         }
         .fullscreen-video {
             position: absolute;
@@ -1529,7 +1543,7 @@
             .feature-desc { font-size: 0.72rem; }
 
             /* Video */
-            .video-section { min-height: 50vh; }
+            .video-section { min-height: 60vh; }
 
             /* Why Loopi */
             .why-single-card { border-radius: 18px; }

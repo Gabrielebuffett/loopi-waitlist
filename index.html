@@ -1391,32 +1391,14 @@
         .video-section {
             position: relative;
             width: 100%;
-            min-height: 100vh;
             overflow: hidden;
             background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        @media (max-width: 768px) {
-            .video-section { min-height: 50vh; }
-            .fullscreen-video { object-fit: contain; }
-        }
-        @media (max-width: 480px) {
-            .video-section { min-height: 40vh; }
-        }
-        @media (max-height: 500px) and (orientation: landscape) {
-            .video-section { min-height: 100vh; }
-            .fullscreen-video { object-fit: cover; }
+            min-height: auto;
         }
         .fullscreen-video {
-            position: absolute;
-            top: 0;
-            left: 0;
+            display: block;
             width: 100%;
-            height: 100%;
-            object-fit: contain;
-            background: #000;
+            height: auto;
             pointer-events: none;
         }
         .fullscreen-video::-webkit-media-controls {
@@ -1697,8 +1679,6 @@
             .feature-front .feature-icon svg { width: 100px; height: 100px; }
             .feature-desc { font-size: 0.72rem; }
 
-            /* Video */
-            .video-section { min-height: 60vh; }
 
             /* Why Loopi */
             .why-single-card { border-radius: 18px; }
@@ -1744,7 +1724,6 @@
         @media (max-height: 500px) and (orientation: landscape) {
             .section { min-height: auto; padding: 2rem 1.5rem; }
             .hero-screen { min-height: auto; padding: 1.5rem; }
-            .video-section { min-height: 100vh; }
             .manifesto-section { min-height: 100vh; }
         }
     </style>

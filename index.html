@@ -2087,6 +2087,7 @@
             }
 
             btn.textContent = 'Welcome...';
+            localStorage.setItem('loopi_waitlist_joined', email);
             var img = new Image();
             img.src = GOOGLE_SCRIPT_URL + '?email=' + encodeURIComponent(email);
             setTimeout(function() {
@@ -2097,7 +2098,11 @@
                 }, 1000);
             }, 800);
         });
-        document.body.style.overflow = 'hidden';
+        if (localStorage.getItem('loopi_waitlist_joined')) {
+            document.getElementById('gate-overlay').style.display = 'none';
+        } else {
+            document.body.style.overflow = 'hidden';
+        }
 
         // === LOOPI GRADIENT AFTER REVEAL ===
         setTimeout(function() {

@@ -2299,21 +2299,6 @@
             document.getElementById('gate-overlay').style.display = 'none';
         } else {
             document.body.style.overflow = 'hidden';
-            // Block VPN/proxy/Tor
-            fetch('https://ipapi.co/json/')
-                .then(function(r) { return r.json(); })
-                .then(function(data) {
-                    if (data.org && (/vpn|proxy|tor|hosting|cloud|server|datacenter/i.test(data.org) || /vpn|proxy|tor|hosting|cloud|server|datacenter/i.test(data.isp || ''))) {
-                        var btn = document.querySelector('.gate-btn');
-                        var input = document.getElementById('gate-email');
-                        btn.textContent = 'VPN detected';
-                        btn.style.background = '#ff4444';
-                        btn.disabled = true;
-                        input.disabled = true;
-                        input.placeholder = 'Please disable VPN to continue';
-                    }
-                })
-                .catch(function() {});
         }
 
         // === LOOPI GRADIENT AFTER REVEAL ===

@@ -2076,16 +2076,46 @@
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwsJGX26kceX_RfkBunIGs4zJjm5SAwTbVrWRwccyiIx1a0rjikvNuTZ8g2BG5cPuCR/exec';
 
         // === EMAIL GATE ===
+        function isValidEmail(email) {
+            var re = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+            if (!re.test(email)) return false;
+            var blocked = ['test.com','example.com','fake.com','temp.com','throwaway.email','mailinator.com','guerrillamail.com','yopmail.com','10minutemail.com','trashmail.com','tempmail.com','sharklasers.com','guerrillamailblock.com','grr.la','dispostable.com','maildrop.cc'];
+            var domain = email.split('@')[1].toLowerCase();
+            if (blocked.indexOf(domain) !== -1) return false;
+            if (email.split('@')[0].length < 2) return false;
+            return true;
+        }
+
         document.getElementById('gate-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            var email = document.getElementById('gate-email').value;
+            var emailInput = document.getElementById('gate-email');
+            var email = emailInput.value.trim();
+            var btn = document.querySelector('.gate-btn');
+
+            if (!isValidEmail(email)) {
+                emailInput.style.borderColor = '#ff4444';
+                emailInput.style.boxShadow = '0 0 0 3px rgba(255,68,68,0.15)';
+                btn.textContent = 'Enter a valid email';
+                btn.style.background = '#ff4444';
+                setTimeout(function() {
+                    btn.textContent = 'Get Access';
+                    btn.style.background = '';
+                    emailInput.style.borderColor = '';
+                    emailInput.style.boxShadow = '';
+                }, 2000);
+                return;
+            }
+
+            btn.textContent = 'Welcome...';
             var img = new Image();
             img.src = GOOGLE_SCRIPT_URL + '?email=' + encodeURIComponent(email);
-            document.getElementById('gate-overlay').classList.add('unlocked');
-            document.body.style.overflow = 'auto';
             setTimeout(function() {
-                document.getElementById('gate-overlay').style.display = 'none';
-            }, 1000);
+                document.getElementById('gate-overlay').classList.add('unlocked');
+                document.body.style.overflow = 'auto';
+                setTimeout(function() {
+                    document.getElementById('gate-overlay').style.display = 'none';
+                }, 1000);
+            }, 800);
         });
         document.body.style.overflow = 'hidden';
 

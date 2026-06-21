@@ -1730,6 +1730,21 @@
     </style>
 </head>
 <body>
+    <!-- EMAIL GATE -->
+    <div class="gate-overlay" id="gate-overlay">
+        <div class="gate-content">
+            <svg class="gate-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 130" width="200" height="130"><defs><linearGradient id="gate-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C3ADE4"/><stop offset="55%" stop-color="#CDB07E"/><stop offset="100%" stop-color="#9C7E45"/></linearGradient></defs><path d="M 80 50 C 80 26, 56 14, 36 14 C 16 14, 6 30, 6 50 C 6 70, 16 86, 36 86 C 56 86, 80 74, 80 50 C 80 26, 104 14, 124 14 C 144 14, 154 30, 154 50 C 154 70, 144 86, 124 86 C 104 86, 80 74, 80 50 Z" transform="translate(20,15)" fill="none" stroke="url(#gate-grad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h1 class="gate-title">Join the waitlist</h1>
+            <p class="gate-subtitle">Enter your email to get exclusive early access.</p>
+            <form class="gate-form" id="gate-form">
+                <div class="gate-input-group">
+                    <input type="email" placeholder="Enter your email" required id="gate-email" class="gate-input">
+                    <button type="submit" class="gate-btn">Get Access</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div class="ambient">
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
@@ -2039,6 +2054,55 @@
 
     <script>
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwsJGX26kceX_RfkBunIGs4zJjm5SAwTbVrWRwccyiIx1a0rjikvNuTZ8g2BG5cPuCR/exec';
+
+        // === EMAIL GATE ===
+        function isValidEmail(email) {
+            var re = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+            if (!re.test(email)) return false;
+            var blocked = ['test.com','example.com','fake.com','temp.com','throwaway.email','mailinator.com','guerrillamail.com','yopmail.com','10minutemail.com','trashmail.com','tempmail.com','sharklasers.com','guerrillamailblock.com','grr.la','dispostable.com','maildrop.cc'];
+            var domain = email.split('@')[1].toLowerCase();
+            if (blocked.indexOf(domain) !== -1) return false;
+            if (email.split('@')[0].length < 2) return false;
+            return true;
+        }
+
+        document.getElementById('gate-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var emailInput = document.getElementById('gate-email');
+            var email = emailInput.value.trim();
+            var btn = document.querySelector('.gate-btn');
+
+            if (!isValidEmail(email)) {
+                emailInput.style.borderColor = '#ff4444';
+                emailInput.style.boxShadow = '0 0 0 3px rgba(255,68,68,0.15)';
+                btn.textContent = 'Enter a valid email';
+                btn.style.background = '#ff4444';
+                setTimeout(function() {
+                    btn.textContent = 'Get Access';
+                    btn.style.background = '';
+                    emailInput.style.borderColor = '';
+                    emailInput.style.boxShadow = '';
+                }, 2000);
+                return;
+            }
+
+            btn.textContent = 'Welcome...';
+            localStorage.setItem('loopi_waitlist_joined', email);
+            var img = new Image();
+            img.src = GOOGLE_SCRIPT_URL + '?email=' + encodeURIComponent(email);
+            setTimeout(function() {
+                document.getElementById('gate-overlay').classList.add('unlocked');
+                document.body.style.overflow = 'auto';
+                setTimeout(function() {
+                    document.getElementById('gate-overlay').style.display = 'none';
+                }, 1000);
+            }, 800);
+        });
+        if (localStorage.getItem('loopi_waitlist_joined')) {
+            document.getElementById('gate-overlay').style.display = 'none';
+        } else {
+            document.body.style.overflow = 'hidden';
+        }
 
         // === LOOPI GRADIENT AFTER REVEAL ===
         setTimeout(function() {

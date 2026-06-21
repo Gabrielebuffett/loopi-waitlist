@@ -2216,17 +2216,31 @@
     <script>
         // === INCOGNITO DETECTION ===
         var isIncognito = false;
-        try {
-            var fs = window.RequestFileSystem || window.webkitRequestFileSystem;
-            if (fs) {
-                fs(window.TEMPORARY, 100, function() {}, function() { isIncognito = true; });
-            }
+        (function detectIncognito() {
+            // Method 1: Try IndexedDB (fails in some incognito)
+            try {
+                var db = indexedDB.open('test');
+                db.onerror = function() { isIncognito = true; };
+            } catch(e) { isIncognito = true; }
+
+            // Method 2: Storage estimate (Chrome incognito has ~120MB vs ~60GB)
             if ('storage' in navigator && 'estimate' in navigator.storage) {
                 navigator.storage.estimate().then(function(est) {
-                    if (est.quota < 120000000) isIncognito = true;
-                });
+                    if (est.quota && est.quota < 200000000) {
+                        isIncognito = true;
+                    }
+                }).catch(function() {});
             }
-        } catch(e) {}
+
+            // Method 3: Try writing to localStorage persistence check
+            try {
+                var testKey = '__incognito_test__';
+                localStorage.setItem(testKey, '1');
+                localStorage.removeItem(testKey);
+            } catch(e) {
+                isIncognito = true;
+            }
+        })();
 
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwsJGX26kceX_RfkBunIGs4zJjm5SAwTbVrWRwccyiIx1a0rjikvNuTZ8g2BG5cPuCR/exec';
 
@@ -2261,12 +2275,23 @@
                 return;
             }
 
-            btn.textContent = 'Welcome...';
-            localStorage.setItem('loopi_waitlist_joined', email);
+            btn.textContent = 'Verifying...';
             var img = new Image();
             img.src = GOOGLE_SCRIPT_URL + '?email=' + encodeURIComponent(email);
+
+            // Check localStorage write to confirm not incognito
+            var canPersist = true;
+            try {
+                localStorage.setItem('loopi_waitlist_joined', email);
+                var check = localStorage.getItem('loopi_waitlist_joined');
+                if (check !== email) canPersist = false;
+            } catch(e) {
+                canPersist = false;
+                isIncognito = true;
+            }
+
             setTimeout(function() {
-                if (isIncognito) {
+                if (isIncognito || !canPersist) {
                     document.getElementById('gate-overlay').style.display = 'none';
                     document.getElementById('incognito-block').classList.add('active');
                 } else {

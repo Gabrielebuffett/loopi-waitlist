@@ -1593,8 +1593,149 @@
             .manifesto-section { min-height: 100vh; }
         }
     </style>
+        /* Gate overlay */
+        .gate-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: linear-gradient(160deg, #0a0a0f, #1a1230, #0f0a18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 1s cubic-bezier(0.16,1,0.3,1);
+            overflow: hidden;
+        }
+        .gate-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(1.05);
+            filter: blur(10px);
+        }
+        .gate-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 30% 40%, rgba(126,87,160,0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 60%, rgba(205,176,126,0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .gate-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            max-width: 480px;
+            padding: 2rem;
+            animation: gateReveal 1.2s cubic-bezier(0.16,1,0.3,1) forwards;
+            opacity: 0;
+        }
+        @keyframes gateReveal {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); filter: blur(6px); }
+            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+        .gate-logo {
+            width: clamp(140px, 25vw, 200px);
+            filter: invert(1) brightness(2);
+            margin-bottom: 1.5rem;
+        }
+        .gate-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -1.5px;
+            margin-bottom: 0.6rem;
+            line-height: 1.1;
+        }
+        .gate-sub {
+            font-size: clamp(0.85rem, 1.8vw, 1rem);
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        .gate-form {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 5px;
+            transition: all 0.4s ease;
+            max-width: 420px;
+            margin: 0 auto;
+        }
+        .gate-form:focus-within {
+            border-color: rgba(195,173,228,0.3);
+            box-shadow: 0 0 30px rgba(126,87,160,0.08);
+        }
+        .gate-form input {
+            flex: 1;
+            background: none;
+            border: none;
+            outline: none;
+            color: #fff;
+            font-size: 0.9rem;
+            padding: 14px 16px;
+            font-family: inherit;
+        }
+        .gate-form input::placeholder {
+            color: rgba(255,255,255,0.25);
+        }
+        .gate-btn {
+            background: linear-gradient(135deg, #9B6FC0, #7E57A0, #CDB07E);
+            background-size: 300% 300%;
+            animation: btnGradient 4s ease-in-out infinite;
+            color: #fff;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            white-space: nowrap;
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+            box-shadow: 0 4px 20px rgba(126,87,160,0.3);
+        }
+        .gate-btn:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 10px 30px rgba(126,87,160,0.4);
+        }
+        .gate-skip {
+            display: block;
+            margin-top: 1.5rem;
+            color: rgba(255,255,255,0.2);
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+            font-family: inherit;
+            letter-spacing: 1px;
+        }
+        .gate-skip:hover {
+            color: rgba(255,255,255,0.4);
+        }
+        @media (max-width: 480px) {
+            .gate-form { flex-direction: column; }
+            .gate-btn { width: 100%; margin-top: 4px; }
+            .gate-content { padding: 1.5rem; }
+        }
+    </style>
 </head>
 <body>
+    <!-- Gate overlay -->
+    <div class="gate-overlay" id="gate-overlay">
+        <div class="gate-content">
+            <img src="logo.svg" alt="Loopi" class="gate-logo">
+            <h1 class="gate-title">Join the waitlist</h1>
+            <p class="gate-sub">Get exclusive early access to Loopi Smart Glasses.</p>
+            <form class="gate-form" id="gate-form">
+                <input type="email" placeholder="Enter your email" required id="gate-email">
+                <button type="submit" class="gate-btn">Get Access</button>
+            </form>
+            <button class="gate-skip" id="gate-skip">Skip for now</button>
+        </div>
+    </div>
     <div class="ambient">
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
@@ -1903,6 +2044,27 @@
     </div>
 
     <script>
+        // === GATE OVERLAY ===
+        var gateOverlay = document.getElementById('gate-overlay');
+
+        document.getElementById('gate-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = document.getElementById('gate-email').value;
+            var img = new Image();
+            img.src = GOOGLE_SCRIPT_URL + '?email=' + encodeURIComponent(email);
+            gateOverlay.classList.add('hidden');
+            sessionStorage.setItem('loopi-gate', 'passed');
+        });
+
+        document.getElementById('gate-skip').addEventListener('click', function() {
+            gateOverlay.classList.add('hidden');
+            sessionStorage.setItem('loopi-gate', 'passed');
+        });
+
+        if (sessionStorage.getItem('loopi-gate') === 'passed') {
+            gateOverlay.classList.add('hidden');
+        }
+
         // === LOOPI GRADIENT AFTER REVEAL ===
         setTimeout(function() {
             document.querySelector('.loopi-text').classList.add('gradient-active');

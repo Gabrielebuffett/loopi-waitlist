@@ -2603,6 +2603,33 @@
         featureCards.forEach(function(card) {
             observer.observe(card);
         });
+
+        // === FORCE VIDEO AUTOPLAY (iOS-safe, stays muted) ===
+        (function() {
+            var v = document.querySelector('.fullscreen-video');
+            if (!v) return;
+            v.muted = true;
+            v.defaultMuted = true;
+            v.setAttribute('muted', '');
+            v.playsInline = true;
+            v.setAttribute('playsinline', '');
+            v.setAttribute('webkit-playsinline', '');
+            function tryPlay() {
+                var p = v.play();
+                if (p && p.catch) p.catch(function() {});
+            }
+            tryPlay();
+            // Retry when the video scrolls into view
+            if ('IntersectionObserver' in window) {
+                new IntersectionObserver(function(entries) {
+                    entries.forEach(function(e) { if (e.isIntersecting) tryPlay(); });
+                }, { threshold: 0.25 }).observe(v);
+            }
+            // Retry on the first user interaction (guaranteed gesture on iOS)
+            ['touchstart', 'click', 'scroll'].forEach(function(ev) {
+                document.addEventListener(ev, tryPlay, { once: true, passive: true });
+            });
+        })();
     </script>
 </body>
 </html>

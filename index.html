@@ -126,8 +126,11 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
+            padding: 8vh 1rem 2rem;
+            box-sizing: border-box;
+            overflow-y: auto;
             transition: all 1s cubic-bezier(0.16,1,0.3,1);
         }
         .gate-overlay.unlocked {
@@ -272,12 +275,17 @@
             .gate-subtitle { font-size: 0.85rem; }
         }
 
+        html {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
         body {
             background: #e8e8ee;
             color: #1a1a1a;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
+            max-width: 100%;
         }
 
 
@@ -378,8 +386,10 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 1.5rem 2rem;
+            padding: 3rem 2rem;
             width: 100%;
+            min-height: auto;
+            box-sizing: border-box;
         }
 
         /* Top section */
@@ -485,6 +495,10 @@
             font-weight: 400;
             line-height: 1.7;
             margin-bottom: 0;
+        }
+        .subheading .word-chars {
+            display: inline-block;
+            white-space: nowrap;
         }
         .subheading .char {
             display: inline-block;
@@ -1527,8 +1541,7 @@
         /* Video section */
         .video-section {
             position: relative;
-            width: 100vw;
-            margin-left: calc(-50vw + 50%);
+            width: 100%;
             overflow: hidden;
             background: #000;
             line-height: 0;
@@ -1550,7 +1563,7 @@
         /* Manifesto section */
         .manifesto-section {
             min-height: auto;
-            padding: 5rem 2rem;
+            padding: 4rem 2rem 8rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1560,8 +1573,7 @@
             position: relative;
             overflow: hidden;
             z-index: 3;
-            width: 100vw;
-            margin-left: calc(-50vw + 50%);
+            width: 100%;
         }
         @keyframes manifestoBg {
             0%, 100% { background-position: 0% 50%; }
@@ -1759,7 +1771,7 @@
             .heading { font-size: clamp(1.8rem, 5vw, 2.5rem); }
             .section-title { font-size: clamp(1.6rem, 4vw, 2.2rem) !important; }
             .carousel-3d { height: 300px; }
-            .carousel-item { width: 300px; margin-left: -150px; margin-top: -130px; }
+            .carousel-item { width: 300px; height: 300px; margin-left: -150px; margin-top: -150px; }
             .carousel-item img { max-width: 280px; }
             .carousel-nav { display: none; }
             .steps { grid-template-columns: repeat(2, 1fr); }
@@ -1769,6 +1781,7 @@
             .feature-card { height: 200px; }
             .feature-name { font-size: 0.9rem; }
             .why-row { font-size: 0.8rem; }
+            .manifesto-section { min-height: auto; padding: 3rem 1.5rem 7rem; }
             .manifesto-line-1 { font-size: clamp(2rem, 6vw, 3rem) !important; }
             .typewriter-line { font-size: clamp(1.2rem, 3vw, 1.8rem) !important; }
             .grid-bg { grid-template-columns: repeat(10, 1fr); grid-template-rows: repeat(6, 1fr); }
@@ -1789,8 +1802,8 @@
             .subheading { font-size: 0.85rem !important; }
 
             /* Carousel */
-            .carousel-3d { height: 200px; }
-            .carousel-item { width: 240px; margin-left: -120px; margin-top: -100px; }
+            .carousel-3d { height: 200px; overflow: hidden; }
+            .carousel-item { width: 240px; height: 200px; margin-left: -120px; margin-top: -100px; }
             .carousel-item img { max-width: 220px; }
             .carousel-item.active img { transform: scale(1.05); }
             .carousel-label { margin-top: -30px; }
@@ -1807,17 +1820,20 @@
             /* How it works */
             .steps { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
             .step { padding: 1rem 0.7rem; border-radius: 14px; margin: 0 0.15rem; }
-            .step-num { font-size: 1.8rem; margin-bottom: 0.5rem; }
+            .step-num { font-size: 1.8rem; margin-bottom: 0.5rem; line-height: 1.3; padding-top: 0.1rem; }
             .step-title { font-size: 0.8rem; }
             .step-desc { font-size: 0.65rem; }
             .grid-bg { grid-template-columns: repeat(8, 1fr); grid-template-rows: repeat(5, 1fr); }
 
             /* Features */
             .features-grid { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
-            .feature-card { height: 160px; }
+            .feature-card { height: 200px; }
             .feature-name { font-size: 0.8rem; }
             .feature-front .feature-icon svg { width: 100px; height: 100px; }
-            .feature-desc { font-size: 0.72rem; }
+            .feature-back { padding: 0.9rem 0.75rem; }
+            .feature-back .feature-name { font-size: 0.82rem; margin-bottom: 0.3rem; line-height: 1.2; }
+            .feature-back .feature-icon svg { width: 80px; height: 80px; }
+            .feature-desc { font-size: 0.6rem; line-height: 1.35; }
 
 
             /* Why Loopi */
@@ -1850,12 +1866,15 @@
             .heading { font-size: 1.4rem; }
             .section-title { font-size: 1.3rem !important; }
             .carousel-3d { height: 200px; }
-            .carousel-item { width: 200px; margin-left: -100px; margin-top: -85px; }
+            .carousel-item { width: 200px; height: 200px; margin-left: -100px; margin-top: -100px; }
             .carousel-item img { max-width: 180px; }
             .carousel-label { margin-top: -20px; }
             .step-num { font-size: 1.5rem; }
-            .feature-card { height: 140px; }
+            .feature-card { height: 215px; }
             .features-grid { gap: 0.4rem; }
+            .feature-back { padding: 0.8rem 0.6rem; }
+            .feature-back .feature-name { font-size: 0.76rem; }
+            .feature-desc { font-size: 0.57rem; line-height: 1.3; }
             .manifesto-line-1 { font-size: 1.5rem !important; }
             .typewriter-line { font-size: 0.85rem !important; }
         }
@@ -1923,16 +1942,16 @@
 
                 <div class="carousel-scene" id="scene">
                     <div class="carousel-item" data-index="0" data-name="Cognac" data-desc="Warm amber acetate">
-                        <img src="loopi-cognac.png" alt="Loopi Cognac" draggable="false">
+                        <img src="https://raw.githubusercontent.com/Gabrielebuffett/loopi-waitlist/main/loopi-cognac.png" alt="Loopi Cognac" draggable="false">
                     </div>
                     <div class="carousel-item" data-index="1" data-name="Lilac" data-desc="Soft violet crystal">
-                        <img src="loopi-lilac.png" alt="Loopi Lilac" draggable="false">
+                        <img src="https://raw.githubusercontent.com/Gabrielebuffett/loopi-waitlist/main/loopi-lilac.png" alt="Loopi Lilac" draggable="false">
                     </div>
                     <div class="carousel-item" data-index="2" data-name="Onyx" data-desc="Classic matte black">
-                        <img src="loopi-onyx.png" alt="Loopi Onyx" draggable="false">
+                        <img src="https://raw.githubusercontent.com/Gabrielebuffett/loopi-waitlist/main/loopi-onyx.png" alt="Loopi Onyx" draggable="false">
                     </div>
                     <div class="carousel-item" data-index="3" data-name="Tortoise" data-desc="Timeless havana pattern">
-                        <img src="loopi-tortoise.png" alt="Loopi Tortoise" draggable="false">
+                        <img src="https://raw.githubusercontent.com/Gabrielebuffett/loopi-waitlist/main/loopi-tortoise.png" alt="Loopi Tortoise" draggable="false">
                     </div>
                 </div>
             </div>
@@ -2100,7 +2119,7 @@
         <!-- 6.5 Video -->
         <section class="video-section" id="demo-video">
             <video class="fullscreen-video" autoplay muted loop playsinline>
-                <source src="loopi-video.mp4" type="video/mp4">
+                <source src="https://gabrielebuffett.github.io/loopi-waitlist/loopi-video.mp4" type="video/mp4">
             </video>
         </section>
 
@@ -2115,7 +2134,7 @@
                 <div class="why-row why-header-row">
                     <div class="why-col-label"></div>
                     <div class="why-col-them">Others</div>
-                    <div class="why-col-us"><img src="logo.svg" alt="Loopi" class="why-logo"></div>
+                    <div class="why-col-us"><img src="https://raw.githubusercontent.com/Gabrielebuffett/loopi-waitlist/main/logo.svg" alt="Loopi" class="why-logo"></div>
                 </div>
                 <div class="why-row">
                     <div class="why-col-label">Relationship</div>
@@ -2256,12 +2275,26 @@
             var text = el.textContent;
             el.textContent = '';
             var baseDelay = 0.8;
-            for (var i = 0; i < text.length; i++) {
-                var span = document.createElement('span');
-                span.className = 'char';
-                span.textContent = text[i] === ' ' ? '\u00A0' : text[i];
-                span.style.animationDelay = (baseDelay + i * 0.02) + 's';
-                el.appendChild(span);
+            var charIndex = 0;
+            var words = text.split(' ');
+            for (var w = 0; w < words.length; w++) {
+                // Wrap each word so line breaks only happen between words, never mid-word
+                var wordWrap = document.createElement('span');
+                wordWrap.className = 'word-chars';
+                for (var c = 0; c < words[w].length; c++) {
+                    var span = document.createElement('span');
+                    span.className = 'char';
+                    span.textContent = words[w][c];
+                    span.style.animationDelay = (baseDelay + charIndex * 0.02) + 's';
+                    wordWrap.appendChild(span);
+                    charIndex++;
+                }
+                el.appendChild(wordWrap);
+                // Breakable space between words (skip after last word)
+                if (w < words.length - 1) {
+                    el.appendChild(document.createTextNode(' '));
+                    charIndex++;
+                }
             }
         })();
 
